@@ -70,7 +70,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-white pt-[128px] pb-[110px] md:pt-[184px] md:pb-[130px]"
+      className="relative isolate overflow-hidden bg-white pt-[120px] pb-[110px] md:pt-[152px] md:pb-[130px]"
     >
       {/* Soft white base. */}
       <div
@@ -116,7 +116,20 @@ export function Hero() {
       />
 
       <div className="anim-hero shell relative">
-        <CreateDemo />
+        <p className="eyebrow text-center">{hero.topEyebrow}</p>
+
+        <h1 className="h1 mx-auto mt-5 max-w-[860px] text-center text-ink">
+          {hero.topHeadlineLead}{' '}
+          <span className="text-accent">{hero.topHeadlineAccent}</span>
+        </h1>
+
+        <p className="mx-auto mt-6 max-w-[620px] text-center text-[17px] leading-[1.55] text-ink-soft md:text-[18px]">
+          {hero.topSubhead}
+        </p>
+
+        <div className="mt-14 md:mt-16">
+          <CreateDemo />
+        </div>
 
         <p className="label mt-[64px] flex items-center justify-center gap-2.5 text-ink-faint">
           <span className="live-dot" aria-hidden="true" />

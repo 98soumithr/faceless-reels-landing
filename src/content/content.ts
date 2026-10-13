@@ -28,6 +28,11 @@ export const hero = {
   // The headline reads "Turn a sentence into / a <word> reel", where <word>
   // cycles through the niches the engine covers. `niches[0]` is the word
   // shown before JS hydrates and under prefers-reduced-motion.
+  topEyebrow: 'The AI reel engine',
+  topHeadlineLead: 'One sentence in, a finished reel out.',
+  topHeadlineAccent: 'Post 10× faster.',
+  topSubhead:
+    'Reelfly writes it, fact-checks it, narrates it, sources real footage and cuts it — a studio-grade short, captioned and ready to post.',
   headlineLine1: 'Turn a sentence into',
   headlineBeforeWord: 'a',
   niches: [
