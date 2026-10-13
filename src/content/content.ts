@@ -9,7 +9,7 @@ export type ReelMedia =
   | { kind: 'video'; src: string; poster?: string };
 
 export const brand = {
-  name: 'Faceless Reels',
+  name: 'Reelfly',
   tagline:
     'The AI engine for faceless history channels. Type a sentence, get a studio-grade reel, good enough to post.',
 };
@@ -45,7 +45,7 @@ export const hero = {
   subhead: 'Faceless. Automated. Studio-grade.',
   cta: 'Join the waitlist',
   note: 'Early access · founding-member pricing · no spam',
-  eyebrow: 'Made with Faceless Reels',
+  eyebrow: 'Made with Reelfly',
 };
 
 /** Marquee row 1 — tag / title / runtime over a dark 16:9 surface. */
@@ -215,7 +215,7 @@ export const stats = [
 ];
 
 export const reasons = {
-  headingLead: 'Why Faceless Reels. ',
+  headingLead: 'Why Reelfly. ',
   headingAccent: 'Six reasons people pick it',
   /** The first reason is rendered as the large feature card. */
   lead: {
@@ -252,7 +252,7 @@ export const reasons = {
 
 export const comparison = {
   headingLead: 'Editors, footage, voice actors. ',
-  headingAccent: 'Or just Faceless Reels',
+  headingAccent: 'Or just Reelfly',
   callout: '~20× cheaper',
   old: {
     title: 'The old way',
@@ -267,7 +267,7 @@ export const comparison = {
     footValue: '$80–200 per reel',
   },
   ours: {
-    title: 'With Faceless Reels',
+    title: 'With Reelfly',
     items: [
       'Type one line, get a finished edit',
       'Archival footage sourced automatically',
@@ -294,7 +294,7 @@ export type Tier = {
 export const pricing = {
   headingLead: 'Founding-member pricing, ',
   headingAccent: 'locked for good',
-  yearlyBadge: '2 months free',
+  yearlyBadge: '',
   audienceToggle: ['Individual', 'Business'] as const,
   cycleToggle: ['Monthly', 'Yearly'] as const,
   cta: 'Join waitlist',
@@ -317,7 +317,7 @@ export const pricing = {
       {
         name: 'Starter',
         monthly: 19,
-        yearly: 16,
+        yearly: 19,
         who: 'A steady trickle to warm up a new channel.',
         allowance: '3 reels / week',
         features: [
@@ -330,7 +330,7 @@ export const pricing = {
       {
         name: 'Daily',
         monthly: 39,
-        yearly: 33,
+        yearly: 39,
         who: 'A reel every day, posted on autopilot.',
         allowance: '1 reel / day',
         features: [
@@ -344,7 +344,7 @@ export const pricing = {
       {
         name: 'Hardcore',
         monthly: 69,
-        yearly: 58,
+        yearly: 69,
         who: 'Twice-daily posting for serious channels.',
         allowance: '2 reels / day',
         features: [
@@ -426,7 +426,7 @@ export const footer = {
       ],
     },
   ],
-  copyright: '© 2026 Faceless Reels · Built for creators, by creators.',
+  copyright: '© 2026 Reelfly · Built for creators, by creators.',
   region: 'United States',
 };
 

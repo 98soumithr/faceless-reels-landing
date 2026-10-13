@@ -215,9 +215,9 @@ function TierCard({ tier, yearly }: { tier: Tier; yearly: boolean }) {
 
 export function Pricing() {
   const [audience, setAudience] = useState<Audience>('Individual');
-  // The reference loads with Yearly active, so the struck-through monthly
-  // price and the "billed yearly" note fill the slots reserved for them.
-  const [cycle, setCycle] = useState<Cycle>('Yearly');
+  // No annual discount, so default to Monthly; Yearly just bills annually
+  // at the same rate.
+  const [cycle, setCycle] = useState<Cycle>('Monthly');
 
   const tiers = pricing.tiers[audience];
   const yearly = cycle === 'Yearly';
@@ -233,9 +233,11 @@ export function Pricing() {
         {/* ── toggles: billing centred, audience pinned to the right edge ── */}
         <div className="relative mt-[46px] flex flex-col items-center gap-6 pt-[18px] md:mt-[56px] lg:gap-0">
           <div className="relative">
-            <span className="ui absolute -top-[30px] left-1/2 z-10 -translate-x-1/2 rounded-full bg-accent px-[10px] py-[5px] text-[11px] leading-none font-bold tracking-[0.06em] whitespace-nowrap text-white uppercase">
-              {pricing.yearlyBadge}
-            </span>
+            {pricing.yearlyBadge ? (
+              <span className="ui absolute -top-[30px] left-1/2 z-10 -translate-x-1/2 rounded-full bg-accent px-[10px] py-[5px] text-[11px] leading-none font-bold tracking-[0.06em] whitespace-nowrap text-white uppercase">
+                {pricing.yearlyBadge}
+              </span>
+            ) : null}
             <Toggle
               label="Billing cycle"
               options={pricing.cycleToggle}

@@ -10,11 +10,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Faceless Reels — Turn a sentence into a history reel',
+  title: 'Reelfly — Turn a sentence into a history reel',
   description:
     'Faceless. Automated. Studio-grade. One line in, a finished, fact-checked history reel out — ready to post to TikTok, Reels and Shorts.',
   openGraph: {
-    title: 'Faceless Reels — Turn a sentence into a history reel',
+    title: 'Reelfly — Turn a sentence into a history reel',
     description:
       'Faceless. Automated. Studio-grade. One line in, a finished, fact-checked history reel out.',
     type: 'website',
