@@ -241,7 +241,7 @@ export const reasons = {
     },
     {
       title: 'Ready to publish',
-      body: 'Caption, hashtags and a cover frame with every reel. Download and post, or auto-schedule.',
+      body: 'Caption, hashtags and a cover frame with every reel. Download and post it yourself.',
     },
     {
       title: 'The output is the ad',
@@ -324,20 +324,20 @@ export const pricing = {
           { text: '3 reels a week' },
           { text: '1 series' },
           { text: '27 motion credits' },
-          { text: 'Auto-post to TikTok, IG & YouTube' },
+          { text: 'Download & post yourself' },
         ],
       },
       {
         name: 'Daily',
         monthly: 39,
         yearly: 39,
-        who: 'A reel every day, posted on autopilot.',
+        who: 'A reel every day, ready to post.',
         allowance: '1 reel / day',
         features: [
           { text: '1 reel a day', sub: 'no watermark' },
           { text: '1 series' },
           { text: '62 motion credits' },
-          { text: 'HD, background music & voice cloning' },
+          { text: 'HD & background music' },
         ],
         popular: true,
       },
@@ -383,7 +383,7 @@ export const faq = {
     },
     {
       q: 'Which platforms is it built for?',
-      a: 'TikTok, Instagram Reels and YouTube Shorts. Reels are 1080×1920 and can be auto-scheduled, or downloaded and posted yourself.',
+      a: 'TikTok, Instagram Reels and YouTube Shorts. Reels are 1080×1920 — download them and post whenever you like.',
     },
     {
       q: 'When can I use it?',

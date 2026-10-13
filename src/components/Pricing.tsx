@@ -263,15 +263,6 @@ export function Pricing() {
             <TierCard key={tier.name} tier={tier} yearly={yearly} />
           ))}
         </ul>
-
-        <p className="mt-[44px] text-center">
-          <a
-            href={pricing.footLink.href}
-            className="ui inline-flex items-center rounded-full border border-dashed border-hair-strong px-[26px] py-[13px] text-[14.5px] font-medium text-ink-soft transition-colors hover:border-ink-faint hover:text-ink"
-          >
-            {pricing.footLink.label}
-          </a>
-        </p>
       </div>
     </section>
   );

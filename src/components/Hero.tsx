@@ -14,60 +14,62 @@ import { FlipWord } from './FlipWord';
  */
 const BLOBS = [
   {
-    // Bright core (the reference's gold).
+    // Bright core (the reference's gold), the most mobile highlight.
+    style: {
+      left: '-6%',
+      top: '38%',
+      width: '620px',
+      height: '520px',
+      background: 'radial-gradient(closest-side, rgba(150,190,255,0.7), rgba(150,190,255,0))',
+      filter: 'blur(26px)',
+      animation: 'heroBlobA 13s ease-in-out infinite',
+    },
+  },
+  {
+    style: {
+      left: '-16%',
+      top: '32%',
+      width: '1040px',
+      height: '820px',
+      background: 'radial-gradient(closest-side, rgba(60,118,245,0.62), rgba(60,118,245,0))',
+      filter: 'blur(36px)',
+      animation: 'heroBlobB 16s ease-in-out infinite',
+    },
+  },
+  {
     style: {
       left: '-8%',
-      top: '44%',
-      width: '460px',
-      height: '380px',
-      background: 'radial-gradient(closest-side, rgba(150,190,255,0.55), rgba(150,190,255,0))',
-      filter: 'blur(22px)',
-      animation: 'heroBlobA 19s ease-in-out infinite',
+      top: '58%',
+      width: '1100px',
+      height: '820px',
+      background: 'radial-gradient(closest-side, rgba(42,96,230,0.6), rgba(42,96,230,0))',
+      filter: 'blur(40px)',
+      animation: 'heroBlobC 18s ease-in-out infinite',
     },
   },
   {
+    // Fills the bottom band so the glow sweeps across like the reference.
     style: {
-      left: '-18%',
-      top: '40%',
-      width: '820px',
-      height: '660px',
-      background: 'radial-gradient(closest-side, rgba(60,118,245,0.5), rgba(60,118,245,0))',
-      filter: 'blur(32px)',
-      animation: 'heroBlobB 24s ease-in-out infinite',
-    },
-  },
-  {
-    style: {
-      left: '-12%',
-      top: '66%',
-      width: '880px',
-      height: '680px',
-      background: 'radial-gradient(closest-side, rgba(40,92,222,0.48), rgba(40,92,222,0))',
-      filter: 'blur(36px)',
-      animation: 'heroBlobC 29s ease-in-out infinite',
-    },
-  },
-  {
-    style: {
-      left: '2%',
-      top: '-14%',
-      width: '640px',
-      height: '520px',
-      background: 'radial-gradient(closest-side, rgba(20,48,138,0.36), rgba(20,48,138,0))',
-      filter: 'blur(38px)',
-      animation: 'heroBlobD 33s ease-in-out infinite',
+      left: '26%',
+      top: '72%',
+      width: '1000px',
+      height: '620px',
+      background: 'radial-gradient(closest-side, rgba(30,66,180,0.5), rgba(30,66,180,0))',
+      filter: 'blur(42px)',
+      animation: 'heroBlobD 21s ease-in-out infinite',
     },
   },
 ] as const;
 
-// Painted on top of the moving blobs to contain them to the lower-left and
-// keep the centre (headline) and right edge near-black.
+// Painted on top of the moving blobs. Kept lighter than before so the glow
+// stays prominent and its motion reads: darkens the top (for the nav) and
+// the right edge, and tempers the area behind the headline just enough for
+// the light type to stay readable.
 const DARKEN = [
-  'radial-gradient(1000px 780px at 100% 0%, rgba(4,8,18,0.95) 0%, rgba(4,8,18,0) 62%)',
-  'radial-gradient(1150px 880px at 60% 34%, rgba(5,9,18,0.9) 0%, rgba(5,9,18,0.5) 46%, rgba(5,9,18,0) 72%)',
-  'radial-gradient(1200px 680px at 82% 102%, rgba(6,10,19,0.86) 0%, rgba(6,10,19,0) 58%)',
-  'linear-gradient(to right, rgba(8,13,26,0) 32%, rgba(8,13,26,0.8) 66%, rgba(8,13,26,0.98) 100%)',
-  'linear-gradient(to bottom, rgba(8,13,26,0.96) 0%, rgba(8,13,26,0.62) 14%, rgba(8,13,26,0) 34%)',
+  'radial-gradient(1000px 760px at 100% 0%, rgba(4,8,18,0.9) 0%, rgba(4,8,18,0) 60%)',
+  'radial-gradient(1020px 680px at 50% 30%, rgba(5,9,18,0.66) 0%, rgba(5,9,18,0.26) 46%, rgba(5,9,18,0) 72%)',
+  'linear-gradient(to right, rgba(8,13,26,0) 46%, rgba(8,13,26,0.5) 78%, rgba(8,13,26,0.9) 100%)',
+  'linear-gradient(to bottom, rgba(8,13,26,0.92) 0%, rgba(8,13,26,0.42) 15%, rgba(8,13,26,0) 38%)',
 ].join(',');
 
 const GRAIN =
@@ -112,7 +114,7 @@ export function Hero() {
           background:
             'linear-gradient(to bottom, rgba(120,170,255,0) 0%, rgba(136,180,255,0.34) 28%, rgba(196,220,255,0.5) 50%, rgba(120,170,255,0) 84%)',
           filter: 'blur(34px)',
-          animation: 'heroStreak 11s ease-in-out infinite',
+          animation: 'heroStreak 8s ease-in-out infinite',
         }}
       />
       <div
