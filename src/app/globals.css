@@ -474,6 +474,24 @@
   -webkit-mask-image: linear-gradient(to right, transparent, #000 90px, #000 calc(100% - 90px), transparent);
 }
 
+/* Hero glow blobs. Animation lives on classes (not inline) so it can survive
+   the reduced-motion blanket rule below at a gentler speed. */
+.hero-blob-a {
+  animation: heroBlobA 13s ease-in-out infinite;
+}
+.hero-blob-b {
+  animation: heroBlobB 16s ease-in-out infinite;
+}
+.hero-blob-c {
+  animation: heroBlobC 18s ease-in-out infinite;
+}
+.hero-blob-d {
+  animation: heroBlobD 21s ease-in-out infinite;
+}
+.hero-blob-e {
+  animation: heroBlobB 15s ease-in-out infinite reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -500,6 +518,24 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  /* The hero glow is a slow, decorative drift — keep it alive (gentler) so
+     the hero never looks broken, while everything else honours the setting. */
+  .hero-blob-a {
+    animation: heroBlobA 26s ease-in-out infinite !important;
+  }
+  .hero-blob-b {
+    animation: heroBlobB 30s ease-in-out infinite !important;
+  }
+  .hero-blob-c {
+    animation: heroBlobC 34s ease-in-out infinite !important;
+  }
+  .hero-blob-d {
+    animation: heroBlobD 38s ease-in-out infinite !important;
+  }
+  .hero-blob-e {
+    animation: heroBlobB 28s ease-in-out infinite reverse !important;
   }
 }
 

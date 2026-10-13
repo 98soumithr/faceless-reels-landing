@@ -393,10 +393,10 @@ export const faq = {
 };
 
 export const closing = {
-  headingLead: 'Put your history channel ',
-  headingAccent: 'on autopilot',
+  headingLead: 'Your next reel is ',
+  headingAccent: 'one sentence away',
   subtext:
-    'One prompt in, a finished reel out — on a schedule. Join the waitlist and be among the first to make one.',
+    'One prompt in, a finished reel out. Join the waitlist and be among the first to make one.',
   note: 'Early access · founding-member pricing · no spam',
 };
 
