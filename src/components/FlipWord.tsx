@@ -54,7 +54,7 @@ export function FlipWord({
       className="relative inline-grid align-baseline"
       style={{
         width: width ? `${width}px` : undefined,
-        transition: 'width 460ms cubic-bezier(0.22,0.61,0.36,1)',
+        transition: 'width 340ms cubic-bezier(0.22,0.61,0.36,1)',
       }}
     >
       {words.map((word, i) => {
@@ -72,7 +72,7 @@ export function FlipWord({
               transform: active ? 'translateY(0)' : 'translateY(0.14em)',
               filter: active ? 'blur(0)' : 'blur(3px)',
               transition:
-                'opacity 460ms cubic-bezier(0.22,0.61,0.36,1), transform 460ms cubic-bezier(0.22,0.61,0.36,1), filter 460ms ease',
+                'opacity 340ms cubic-bezier(0.22,0.61,0.36,1), transform 340ms cubic-bezier(0.22,0.61,0.36,1), filter 340ms ease',
             }}
           >
             {word}

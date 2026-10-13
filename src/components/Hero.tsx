@@ -78,7 +78,11 @@ export function Hero() {
           {hero.headlineLine1}
           <br />
           {hero.headlineBeforeWord}{' '}
-          <FlipWord words={hero.niches} className="text-[#eaeff8]" />{' '}
+          <FlipWord
+            words={hero.niches}
+            intervalMs={1400}
+            className="text-accent italic"
+          />{' '}
           {hero.headlineAfterWord}
         </h1>
 
