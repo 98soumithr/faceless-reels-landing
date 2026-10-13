@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { showcase, type ReelMedia } from '@/content/content';
+import { asset } from '@/lib/asset';
 
 /**
  * Section 02 — the coverflow showcase.
@@ -22,7 +23,7 @@ function ReelMediaLayer({ media }: { media: ReelMedia }) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={media.src}
+        src={asset(media.src)}
         alt={media.alt}
         loading="lazy"
         decoding="async"
@@ -34,7 +35,7 @@ function ReelMediaLayer({ media }: { media: ReelMedia }) {
   if (media.kind === 'video') {
     return (
       <video
-        src={media.src}
+        src={asset(media.src)}
         poster={media.poster}
         muted
         loop

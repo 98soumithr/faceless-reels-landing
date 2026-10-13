@@ -1,4 +1,5 @@
 import type { ReelMedia } from '@/content/content';
+import { asset } from '@/lib/asset';
 import { publishMock } from '@/content/content';
 
 /**
@@ -56,7 +57,7 @@ export function PublishMock({ className = '' }: { className?: string }) {
           {media.kind === 'image' ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={media.src}
+              src={asset(media.src)}
               alt={media.alt}
               loading="lazy"
               decoding="async"
@@ -65,7 +66,7 @@ export function PublishMock({ className = '' }: { className?: string }) {
           ) : null}
           {media.kind === 'video' ? (
             <video
-              src={media.src}
+              src={asset(media.src)}
               poster={media.poster}
               muted
               loop

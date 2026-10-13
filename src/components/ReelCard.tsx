@@ -1,4 +1,5 @@
 import type { ReelMedia } from '@/content/content';
+import { asset } from '@/lib/asset';
 
 /**
  * The video surface. This is the single swap point for real media: pass
@@ -34,7 +35,7 @@ export function ReelSurface({
       {media.kind === 'image' ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={media.src}
+          src={asset(media.src)}
           alt={media.alt}
           loading="lazy"
           decoding="async"
@@ -44,7 +45,7 @@ export function ReelSurface({
 
       {media.kind === 'video' ? (
         <video
-          src={media.src}
+          src={asset(media.src)}
           poster={media.poster}
           muted
           loop
