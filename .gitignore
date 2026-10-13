@@ -10,3 +10,11 @@ dist/
 .claude-flow/data/
 next-env.d.ts
 .turbo/
+
+# Local tool state / build artifacts
+.claude-flow/
+.swarm/
+*.db
+*.db-shm
+*.db-wal
+*.tsbuildinfo
