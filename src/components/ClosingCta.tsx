@@ -1,5 +1,6 @@
-import { closing } from '@/content/content';
+import { closing, hero } from '@/content/content';
 import { WaitlistForm } from './WaitlistForm';
+import { FlipWord } from './FlipWord';
 
 /**
  * Reference section 8 — a 600px full-bleed DARK band (hard cut top and
@@ -53,8 +54,13 @@ export function ClosingCta() {
 
       <div className="shell relative text-center">
         <h2 className="mx-auto max-w-[820px] text-[38px] leading-[1.1] font-semibold tracking-[-0.015em] text-on-dark sm:text-[52px] md:text-[68px] md:leading-[1.06]">
-          {closing.headingLead.trim()}
-          <span className="accented block text-on-dark">{closing.headingAccent}</span>
+          {closing.headlineBefore}{' '}
+          <FlipWord
+            words={hero.niches}
+            intervalMs={1400}
+            className="italic text-[#8fb0ff]"
+          />{' '}
+          {closing.headlineAfter}
         </h2>
 
         <p className="mx-auto mt-6 max-w-[500px] text-[16.5px] leading-[27px] text-on-dark-soft md:mt-6 md:text-[18px] md:leading-[29px]">

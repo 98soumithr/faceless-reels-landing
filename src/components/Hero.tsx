@@ -79,8 +79,24 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-30 bg-white"
       />
 
-      {/* Drifting blue blobs — the live mesh. */}
+      {/* Wide blue waves sweeping across, plus drifting blobs — the live mesh. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20">
+        <div
+          className="hero-wave-a absolute left-[-30%] top-[6%] h-[420px] w-[160%] will-change-transform"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(47,107,255,0) 0%, rgba(47,107,255,0.34) 36%, rgba(91,139,255,0.42) 52%, rgba(47,107,255,0.3) 66%, rgba(47,107,255,0) 100%)',
+            filter: 'blur(60px)',
+          }}
+        />
+        <div
+          className="hero-wave-b absolute left-[-30%] top-[44%] h-[460px] w-[160%] will-change-transform"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(29,79,216,0) 0%, rgba(29,79,216,0.26) 34%, rgba(74,163,255,0.4) 54%, rgba(29,79,216,0.26) 72%, rgba(29,79,216,0) 100%)',
+            filter: 'blur(70px)',
+          }}
+        />
         {BLOBS.map((blob, i) => (
           <div
             key={i}

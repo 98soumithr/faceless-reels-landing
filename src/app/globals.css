@@ -327,6 +327,32 @@
   }
 }
 
+/* Wide blue "waves" that sweep horizontally across the hero, each on its own
+   offset so the blue flows rather than pulsing in place. */
+@keyframes heroWaveA {
+  0% {
+    transform: translateX(-16%) translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(20%) translateY(-24px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(-16%) translateY(0) rotate(-5deg);
+  }
+}
+
+@keyframes heroWaveB {
+  0% {
+    transform: translateX(18%) translateY(0) rotate(4deg);
+  }
+  50% {
+    transform: translateX(-22%) translateY(22px) rotate(4deg);
+  }
+  100% {
+    transform: translateX(18%) translateY(0) rotate(4deg);
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -491,6 +517,12 @@
 .hero-blob-e {
   animation: heroBlobB 15s ease-in-out infinite reverse;
 }
+.hero-wave-a {
+  animation: heroWaveA 17s ease-in-out infinite;
+}
+.hero-wave-b {
+  animation: heroWaveB 21s ease-in-out infinite;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -536,6 +568,12 @@
   }
   .hero-blob-e {
     animation: heroBlobB 28s ease-in-out infinite reverse !important;
+  }
+  .hero-wave-a {
+    animation: heroWaveA 30s ease-in-out infinite !important;
+  }
+  .hero-wave-b {
+    animation: heroWaveB 36s ease-in-out infinite !important;
   }
 }
 

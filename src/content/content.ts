@@ -253,7 +253,7 @@ export const reasons = {
 export const comparison = {
   headingLead: 'Editors, footage, voice actors. ',
   headingAccent: 'Or just Reelfly',
-  callout: '~20× cheaper',
+  callout: '~50× cheaper',
   old: {
     title: 'The old way',
     items: [
@@ -273,10 +273,10 @@ export const comparison = {
       'Archival footage sourced automatically',
       "Facts cited before they're ever spoken",
       'Dozens a day, about four minutes each',
-      'A daily channel runs on autopilot',
+      'A finished reel ready to post',
     ],
     footLabel: 'Your cost:',
-    footValue: 'under $1 per reel',
+    footValue: 'about $1.30 per reel',
   },
 };
 
@@ -393,8 +393,9 @@ export const faq = {
 };
 
 export const closing = {
-  headingLead: 'Your next reel is ',
-  headingAccent: 'one sentence away',
+  // "Put your <niche> channel on autopilot", niche rotating like the hero.
+  headlineBefore: 'Put your',
+  headlineAfter: 'channel on autopilot',
   subtext:
     'One prompt in, a finished reel out. Join the waitlist and be among the first to make one.',
   note: 'Early access · founding-member pricing · no spam',
