@@ -6,28 +6,68 @@ import { FlipWord } from './FlipWord';
 /**
  * Full-bleed dark hero. The reference's warm gradient mesh (gold core,
  * red bleed, bright diagonal streak) is translated one-for-one into the
- * blue brand ramp — same shapes, same positions, no warm hues.
+ * blue brand ramp — same shapes, no warm hues — and, like the reference,
+ * it drifts continuously. The coloured glow lives in separate blurred blob
+ * layers (`BLOBS`) that each animate on their own slow cycle; a static
+ * darkening overlay (`DARKEN`) sits on top to keep the glow pulled into a
+ * lower-left crescent and the headline area readable as the blobs move.
  */
-const MESH = [
-  // Darkening passes, painted over the blobs (first layer = topmost).
+const BLOBS = [
+  {
+    // Bright core (the reference's gold).
+    style: {
+      left: '-8%',
+      top: '44%',
+      width: '460px',
+      height: '380px',
+      background: 'radial-gradient(closest-side, rgba(150,190,255,0.55), rgba(150,190,255,0))',
+      filter: 'blur(22px)',
+      animation: 'heroBlobA 19s ease-in-out infinite',
+    },
+  },
+  {
+    style: {
+      left: '-18%',
+      top: '40%',
+      width: '820px',
+      height: '660px',
+      background: 'radial-gradient(closest-side, rgba(60,118,245,0.5), rgba(60,118,245,0))',
+      filter: 'blur(32px)',
+      animation: 'heroBlobB 24s ease-in-out infinite',
+    },
+  },
+  {
+    style: {
+      left: '-12%',
+      top: '66%',
+      width: '880px',
+      height: '680px',
+      background: 'radial-gradient(closest-side, rgba(40,92,222,0.48), rgba(40,92,222,0))',
+      filter: 'blur(36px)',
+      animation: 'heroBlobC 29s ease-in-out infinite',
+    },
+  },
+  {
+    style: {
+      left: '2%',
+      top: '-14%',
+      width: '640px',
+      height: '520px',
+      background: 'radial-gradient(closest-side, rgba(20,48,138,0.36), rgba(20,48,138,0))',
+      filter: 'blur(38px)',
+      animation: 'heroBlobD 33s ease-in-out infinite',
+    },
+  },
+] as const;
+
+// Painted on top of the moving blobs to contain them to the lower-left and
+// keep the centre (headline) and right edge near-black.
+const DARKEN = [
   'radial-gradient(1000px 780px at 100% 0%, rgba(4,8,18,0.95) 0%, rgba(4,8,18,0) 62%)',
-  // Keep the centre — where the headline sits — near-black, as in the
-  // reference. Without this the blooms below wash the whole stage out.
-  'radial-gradient(1150px 880px at 60% 34%, rgba(5,9,18,0.94) 0%, rgba(5,9,18,0.55) 46%, rgba(5,9,18,0) 72%)',
-  // Contain the bloom: darken the bottom-centre/right so the glow reads as a
-  // crescent hugging the lower-left, not a wash across the whole bottom band.
+  'radial-gradient(1150px 880px at 60% 34%, rgba(5,9,18,0.9) 0%, rgba(5,9,18,0.5) 46%, rgba(5,9,18,0) 72%)',
   'radial-gradient(1200px 680px at 82% 102%, rgba(6,10,19,0.86) 0%, rgba(6,10,19,0) 58%)',
   'linear-gradient(to right, rgba(8,13,26,0) 32%, rgba(8,13,26,0.8) 66%, rgba(8,13,26,0.98) 100%)',
   'linear-gradient(to bottom, rgba(8,13,26,0.96) 0%, rgba(8,13,26,0.62) 14%, rgba(8,13,26,0) 34%)',
-  // Bright core (the reference's gold), then the bleed outward — kept dim and
-  // pulled tight to the lower-left so the stage stays near-black elsewhere.
-  'radial-gradient(340px 270px at 2% 59%, rgba(150,190,255,0.5) 0%, rgba(150,190,255,0) 66%)',
-  'radial-gradient(640px 500px at 0% 62%, rgba(60,118,245,0.5) 0%, rgba(60,118,245,0) 68%)',
-  'radial-gradient(720px 520px at 8% 97%, rgba(40,92,222,0.46) 0%, rgba(40,92,222,0) 70%)',
-  'radial-gradient(680px 540px at 19% 74%, rgba(26,66,175,0.26) 0%, rgba(26,66,175,0) 74%)',
-  'radial-gradient(640px 480px at 23% 9%, rgba(20,48,138,0.34) 0%, rgba(20,48,138,0) 72%)',
-  'radial-gradient(620px 520px at 0% 104%, rgba(80,138,250,0.3) 0%, rgba(80,138,250,0) 64%)',
-  'linear-gradient(#060a13, #060a13)',
 ].join(',');
 
 const GRAIN =
@@ -39,21 +79,40 @@ export function Hero() {
       id="top"
       className="relative isolate overflow-hidden bg-dark pt-[150px] pb-[240px] md:pt-[290px] md:pb-[300px]"
     >
-      {/* Gradient mesh. */}
+      {/* Near-black base. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-30"
+        style={{ backgroundColor: '#060a13' }}
+      />
+
+      {/* Moving coloured blobs — the live part of the mesh. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20">
+        {BLOBS.map((blob, i) => (
+          <div
+            key={i}
+            className="absolute will-change-transform"
+            style={blob.style}
+          />
+        ))}
+      </div>
+
+      {/* Static darkening, painted over the blobs to contain the glow. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
-        style={{ background: MESH }}
+        style={{ background: DARKEN }}
       />
 
       {/* Thin bright diagonal streak out of the top-right, plus its halo. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[-300px] left-[84%] -z-10 h-[1250px] w-[140px] origin-top -rotate-[26deg]"
+        className="pointer-events-none absolute top-[-300px] left-[84%] -z-10 h-[1250px] w-[140px] origin-top"
         style={{
           background:
             'linear-gradient(to bottom, rgba(120,170,255,0) 0%, rgba(136,180,255,0.34) 28%, rgba(196,220,255,0.5) 50%, rgba(120,170,255,0) 84%)',
           filter: 'blur(34px)',
+          animation: 'heroStreak 11s ease-in-out infinite',
         }}
       />
       <div
