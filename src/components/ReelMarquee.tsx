@@ -19,7 +19,7 @@ export function ReelMarquee({ className = '' }: { className?: string }) {
             <li
               key={`${reel.title}-${i}`}
               aria-hidden={i >= reelRowTop.length}
-              className="w-[300px] shrink-0 sm:w-[400px] lg:w-[500px]"
+              className="w-[272px] shrink-0 sm:w-[348px] lg:w-[420px]"
             >
               <ReelCard {...reel} />
             </li>
@@ -33,7 +33,7 @@ export function ReelMarquee({ className = '' }: { className?: string }) {
             <li
               key={`${reel.overlay}-${i}`}
               aria-hidden={i >= reelRowBottom.length}
-              className="w-[240px] shrink-0 sm:w-[310px] lg:w-[390px]"
+              className="w-[216px] shrink-0 sm:w-[272px] lg:w-[322px]"
             >
               <ReelThumbCard {...reel} />
             </li>

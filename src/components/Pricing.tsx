@@ -12,10 +12,11 @@ type Cycle = (typeof pricing.cycleToggle)[number];
  */
 const popularSurface: CSSProperties = {
   background:
-    'radial-gradient(118% 84% at 14% -8%, #5f93ff 0%, rgba(95,147,255,0) 56%),' +
-    'radial-gradient(104% 78% at 106% 8%, #1d4fd8 0%, rgba(29,79,216,0) 60%),' +
-    'radial-gradient(130% 96% at 44% 118%, #0e1731 0%, rgba(14,23,49,0) 62%),' +
-    'linear-gradient(168deg, #2f6bff 0%, #2a5fe8 38%, #18275c 100%)',
+    'radial-gradient(125% 90% at 18% -12%, #6f9dff 0%, rgba(111,157,255,0) 54%),' +
+    'radial-gradient(70% 58% at 60% 14%, rgba(142,179,255,0.55) 0%, rgba(142,179,255,0) 58%),' +
+    'radial-gradient(110% 82% at 112% 4%, #255ae6 0%, rgba(37,90,230,0) 56%),' +
+    'radial-gradient(150% 116% at 50% 132%, #090f26 0%, rgba(9,15,38,0) 58%),' +
+    'linear-gradient(170deg, #2f6bff 0%, #2857d8 42%, #14214e 100%)',
 };
 
 function Toggle<T extends string>({

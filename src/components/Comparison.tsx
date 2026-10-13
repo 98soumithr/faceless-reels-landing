@@ -127,7 +127,7 @@ export function Comparison() {
             className="flex justify-center lg:pointer-events-none lg:absolute lg:top-1/2 lg:left-1/2 lg:z-10 lg:-translate-x-1/2 lg:-translate-y-1/2"
           >
             <span className="ui grid size-[44px] place-items-center rounded-full bg-ink text-[13px] font-bold tracking-[0.02em] text-white shadow-[0_0_0_6px_var(--paper),0_10px_24px_-10px_rgba(10,15,28,0.6)]">
-              VS
+              vs
             </span>
           </div>
 

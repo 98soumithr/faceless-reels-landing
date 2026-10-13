@@ -128,12 +128,12 @@ export function Showcase() {
                     }`}
                     style={{
                       zIndex: isActive ? 20 : 10,
-                      opacity: isActive ? 1 : 0.6,
+                      opacity: isActive ? 1 : 0.72,
                       transform: isActive
                         ? 'translateX(0) rotateY(0deg) scale(1)'
-                        : `translateX(${side * 64}%) rotateY(${side * -30}deg) scale(.86)`,
-                      // The reference throws the side cards out of focus.
-                      filter: isActive ? 'none' : 'blur(5px)',
+                        : `translateX(${side * 60}%) rotateY(${side * -28}deg) scale(.88)`,
+                      // The reference keeps the side cards legible but softly out of focus.
+                      filter: isActive ? 'none' : 'blur(2.5px)',
                       transition: `transform 700ms ${EASE}, opacity 700ms ${EASE}, filter 700ms ${EASE}`,
                     }}
                   >
@@ -152,9 +152,9 @@ export function Showcase() {
                     {/* Muted-audio badge — matches the reference's top-right pill. */}
                     <span
                       aria-hidden="true"
-                      className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-white shadow-[0_2px_8px_rgba(10,15,28,.2)]"
+                      className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white shadow-[0_2px_8px_rgba(10,15,28,.2)]"
                     >
-                      <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                      <svg width="17" height="16" viewBox="0 0 15 14" fill="none">
                         <path
                           d="M6 1.5 3.2 4H1.5v6h1.7L6 12.5v-11Z"
                           stroke="var(--accent)"
@@ -181,7 +181,7 @@ export function Showcase() {
 
                     {/* Paper veil that pushes the side cards back. */}
                     {!isActive ? (
-                      <span aria-hidden="true" className="absolute inset-0 bg-paper/30" />
+                      <span aria-hidden="true" className="absolute inset-0 bg-paper/12" />
                     ) : null}
                   </article>
                 );
@@ -216,8 +216,10 @@ export function Showcase() {
                 onClick={() => setActive(i)}
                 aria-label={`Show ${reel.title}`}
                 aria-current={i === active ? 'true' : undefined}
-                className={`h-[6px] w-[6px] rounded-full transition-colors duration-200 ${
-                  i === active ? 'bg-accent' : 'bg-accent/25 hover:bg-accent/50'
+                className={`h-[6px] rounded-full transition-all duration-200 ${
+                  i === active
+                    ? 'w-[16px] bg-accent'
+                    : 'w-[6px] bg-accent/25 hover:bg-accent/50'
                 }`}
               />
             ))}

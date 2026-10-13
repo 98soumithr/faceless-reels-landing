@@ -168,12 +168,14 @@ function Editor() {
           </div>
         ))}
 
-        {/* Playhead sweeping across the tracks. */}
+        {/* Playhead sweeping across the tracks: a small caret seated at the top
+            of track 1 with a short stem through the first two tracks — as in
+            the reference, not a tall arrow floating above the card. */}
         <span
-          className="absolute top-[-7px] bottom-[16px] w-[2px] bg-accent"
+          className="absolute top-0 bottom-[22px] w-[2px] bg-accent"
           style={{ animation: 'editorScrub 5.5s cubic-bezier(0.65,0.05,0.36,1) infinite' }}
         >
-          <span className="absolute -top-[6px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[5px] border-b-[6px] border-x-transparent border-b-accent" />
+          <span className="absolute -top-[4px] left-1/2 h-0 w-0 -translate-x-1/2 border-x-[4px] border-b-[5px] border-x-transparent border-b-accent" />
         </span>
       </div>
 
@@ -262,8 +264,8 @@ function Thumbs() {
             }}
           >
             <span
-              className={`ui absolute top-[6px] text-[11px] font-medium leading-none text-white ${
-                t.winner ? 'right-[8px]' : 'left-[8px] rounded-[4px] bg-black/55 px-[5px] py-[3px]'
+              className={`ui absolute top-[7px] text-[11px] font-medium leading-none text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] ${
+                t.winner ? 'right-[9px]' : 'left-[9px]'
               }`}
             >
               {t.badge}
@@ -271,7 +273,7 @@ function Thumbs() {
           </div>
         ))}
       </div>
-      <Caption right={copy.thumbs.right} />
+      <Caption left="1280×720" right={copy.thumbs.right} />
     </div>
   );
 }

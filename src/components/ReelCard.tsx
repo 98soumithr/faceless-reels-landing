@@ -126,6 +126,7 @@ export function ReelThumbCard({
     <ReelSurface
       media={media}
       scrim={false}
+      ratio="2 / 1"
       className={`rounded-[6px] border border-white/20 ${className}`}
     >
       <div
@@ -133,11 +134,11 @@ export function ReelThumbCard({
         className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
       />
       <p
-        className="ui absolute inset-x-0 bottom-[7%] z-10 px-[3%] text-center text-[20px] leading-[0.95] font-extrabold tracking-[-0.02em] text-white uppercase sm:text-[25px] lg:text-[31px]"
+        className="ui absolute inset-x-0 bottom-[8%] z-10 px-[3%] text-center text-[17px] leading-[0.95] font-extrabold tracking-[-0.02em] whitespace-nowrap text-white uppercase sm:text-[21px] lg:text-[26px]"
         style={{
           // Inter has no condensed cut; squeezing it reproduces the
           // reference's thumbnail lettering and keeps it on one line.
-          transform: 'scaleX(0.86)',
+          transform: 'scaleX(0.82)',
           WebkitTextStroke: '4px rgba(0,0,0,0.9)',
           paintOrder: 'stroke fill',
           textShadow: '0 3px 0 rgba(0,0,0,0.5)',

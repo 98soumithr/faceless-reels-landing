@@ -18,7 +18,7 @@ export function Stats() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'radial-gradient(circle, rgba(10,15,28,.10) 1px, transparent 1px)',
+            'radial-gradient(circle, rgba(10,15,28,.14) 1.1px, transparent 1.1px)',
           backgroundSize: '26px 26px',
         }}
       />

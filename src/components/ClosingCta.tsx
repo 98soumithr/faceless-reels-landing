@@ -19,15 +19,16 @@ import { WaitlistForm } from './WaitlistForm';
  */
 const MESH = [
   // Darkening passes for the two near-black corners (first layer = topmost).
-  'radial-gradient(58% 72% at 102% 102%, rgba(6,9,20,0.97) 0%, rgba(6,9,20,0) 62%)',
-  'radial-gradient(34% 46% at -4% -10%, rgba(9,13,28,0.7) 0%, rgba(9,13,28,0) 76%)',
+  'radial-gradient(60% 74% at 104% 104%, rgba(5,8,18,0.98) 0%, rgba(5,8,18,0) 60%)',
+  'radial-gradient(44% 56% at -6% -12%, rgba(7,11,24,0.85) 0%, rgba(7,11,24,0) 74%)',
   // Secondary bloom the reference carries below and left of centre.
-  'radial-gradient(30% 28% at 42% 57%, rgba(74,130,242,0.45) 0%, rgba(48,94,198,0.2) 54%, rgba(26,52,124,0) 82%)',
-  // Hot core (the reference's red) -> accent blue.
-  'radial-gradient(84% 92% at 72% 21%, rgba(44,94,206,0.95) 0%, rgba(40,86,194,0.8) 30%, rgba(28,60,148,0.42) 56%, rgba(14,28,70,0) 84%)',
+  'radial-gradient(28% 26% at 42% 58%, rgba(70,124,236,0.4) 0%, rgba(44,88,188,0.16) 54%, rgba(24,48,116,0) 82%)',
+  // Hot core (the reference's red) -> accent blue. Tighter + dimmer so the
+  // dark base reads through and the band stays moody rather than flat-bright.
+  'radial-gradient(66% 74% at 72% 20%, rgba(42,90,200,0.9) 0%, rgba(36,80,186,0.62) 32%, rgba(22,50,128,0.3) 58%, rgba(12,26,66,0) 84%)',
   // Cool blob sweeping across the bottom-left.
-  'radial-gradient(92% 78% at 20% 110%, rgba(80,110,178,0.9) 0%, rgba(58,86,148,0.6) 46%, rgba(26,38,76,0) 84%)',
-  'linear-gradient(158deg, #0f1530 0%, #0b1020 56%, #080d1a 100%)',
+  'radial-gradient(74% 64% at 18% 112%, rgba(60,92,160,0.72) 0%, rgba(44,70,128,0.42) 48%, rgba(22,34,70,0) 84%)',
+  'linear-gradient(158deg, #0c1228 0%, #090e1e 56%, #060a16 100%)',
 ].join(',');
 
 const GRAIN =

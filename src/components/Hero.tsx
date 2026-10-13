@@ -13,17 +13,19 @@ const MESH = [
   // Keep the centre — where the headline sits — near-black, as in the
   // reference. Without this the blooms below wash the whole stage out.
   'radial-gradient(1150px 880px at 60% 34%, rgba(5,9,18,0.94) 0%, rgba(5,9,18,0.55) 46%, rgba(5,9,18,0) 72%)',
-  'linear-gradient(to right, rgba(8,13,26,0) 34%, rgba(8,13,26,0.78) 68%, rgba(8,13,26,0.98) 100%)',
+  // Contain the bloom: darken the bottom-centre/right so the glow reads as a
+  // crescent hugging the lower-left, not a wash across the whole bottom band.
+  'radial-gradient(1200px 680px at 82% 102%, rgba(6,10,19,0.86) 0%, rgba(6,10,19,0) 58%)',
+  'linear-gradient(to right, rgba(8,13,26,0) 32%, rgba(8,13,26,0.8) 66%, rgba(8,13,26,0.98) 100%)',
   'linear-gradient(to bottom, rgba(8,13,26,0.96) 0%, rgba(8,13,26,0.62) 14%, rgba(8,13,26,0) 34%)',
-  // Bright core (the reference's gold), then the bleed outward.
-  // The reference keeps its glow as a crescent hugging the left and
-  // bottom-left edges; the stage stays near-black everywhere else.
-  'radial-gradient(420px 330px at 3% 58%, rgba(168,204,255,0.82) 0%, rgba(168,204,255,0) 66%)',
-  'radial-gradient(760px 580px at 0% 60%, rgba(64,124,250,0.78) 0%, rgba(64,124,250,0) 68%)',
-  'radial-gradient(900px 640px at 12% 93%, rgba(42,96,230,0.7) 0%, rgba(42,96,230,0) 70%)',
-  'radial-gradient(820px 640px at 21% 72%, rgba(28,70,185,0.42) 0%, rgba(28,70,185,0) 74%)',
-  'radial-gradient(640px 480px at 23% 9%, rgba(20,48,138,0.46) 0%, rgba(20,48,138,0) 72%)',
-  'radial-gradient(760px 600px at 0% 104%, rgba(88,144,255,0.4) 0%, rgba(88,144,255,0) 64%)',
+  // Bright core (the reference's gold), then the bleed outward — kept dim and
+  // pulled tight to the lower-left so the stage stays near-black elsewhere.
+  'radial-gradient(340px 270px at 2% 59%, rgba(150,190,255,0.5) 0%, rgba(150,190,255,0) 66%)',
+  'radial-gradient(640px 500px at 0% 62%, rgba(60,118,245,0.5) 0%, rgba(60,118,245,0) 68%)',
+  'radial-gradient(720px 520px at 8% 97%, rgba(40,92,222,0.46) 0%, rgba(40,92,222,0) 70%)',
+  'radial-gradient(680px 540px at 19% 74%, rgba(26,66,175,0.26) 0%, rgba(26,66,175,0) 74%)',
+  'radial-gradient(640px 480px at 23% 9%, rgba(20,48,138,0.34) 0%, rgba(20,48,138,0) 72%)',
+  'radial-gradient(620px 520px at 0% 104%, rgba(80,138,250,0.3) 0%, rgba(80,138,250,0) 64%)',
   'linear-gradient(#060a13, #060a13)',
 ].join(',');
 
