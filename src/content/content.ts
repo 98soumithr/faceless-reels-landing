@@ -48,6 +48,28 @@ export const hero = {
   eyebrow: 'Made with Reelfly',
 };
 
+/**
+ * The looping hero demo: a sentence types in, "Create" is clicked, and a
+ * finished reel is revealed — our take on the Opus-style input→output hero.
+ */
+export const createDemo = {
+  promptLabel: 'Your sentence',
+  prompt: 'london bridge, shipped to the arizona desert',
+  cta: 'Create',
+  building: 'Generating your reel',
+  steps: ['Script', 'Fact-check', 'Voiceover', 'Footage', 'Edit', 'Caption'],
+  output: {
+    tag: 'History',
+    title: 'London Bridge in Arizona',
+    runtime: '0:56',
+    media: {
+      kind: 'image' as const,
+      src: '/reels/demo-reel.jpg',
+      alt: 'Finished vertical reel: London Bridge in Arizona',
+    },
+  },
+};
+
 /** Marquee row 1 — tag / title / runtime over a dark 16:9 surface. */
 export const reelRowTop: {
   tag: string;

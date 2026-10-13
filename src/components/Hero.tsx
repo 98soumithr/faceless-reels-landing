@@ -2,6 +2,7 @@ import { hero } from '@/content/content';
 import { ReelMarquee } from './ReelMarquee';
 import { WaitlistForm } from './WaitlistForm';
 import { FlipWord } from './FlipWord';
+import { CreateDemo } from './CreateDemo';
 
 /**
  * Light hero. A field of soft blue blobs drifts across a white ground — the
@@ -137,7 +138,11 @@ export function Hero() {
           <WaitlistForm source="hero" tone="light" />
         </div>
 
-        <p className="label mt-[108px] flex items-center gap-2.5 text-ink-faint">
+        <div className="mt-16">
+          <CreateDemo />
+        </div>
+
+        <p className="label mt-[72px] flex items-center gap-2.5 text-ink-faint">
           <span className="live-dot" aria-hidden="true" />
           {hero.eyebrow}
         </p>

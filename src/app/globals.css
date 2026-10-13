@@ -353,6 +353,31 @@
   }
 }
 
+/* Create-demo helpers: button spinner, flow dash, output shimmer. */
+@keyframes heroBlobSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flowDash {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(360%);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 140% 0;
+  }
+  to {
+    background-position: -40% 0;
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
