@@ -70,7 +70,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-white pt-[120px] pb-[110px] md:pt-[152px] md:pb-[130px]"
+      className="relative isolate overflow-hidden bg-white pt-[104px] pb-[110px] md:pt-[118px] md:pb-[130px]"
     >
       {/* Soft white base. */}
       <div
@@ -116,9 +116,7 @@ export function Hero() {
       />
 
       <div className="anim-hero shell relative">
-        <p className="eyebrow text-center">{hero.topEyebrow}</p>
-
-        <h1 className="h1 mx-auto mt-5 max-w-[860px] text-center text-ink">
+        <h1 className="h1 mx-auto max-w-[860px] text-center text-ink">
           {hero.topHeadlineLead}{' '}
           <span className="text-accent">{hero.topHeadlineAccent}</span>
         </h1>
