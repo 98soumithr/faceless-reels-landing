@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+.env
+.env*.local
+*.log
+.DS_Store
+.claude-flow/data/
+next-env.d.ts
+.turbo/
