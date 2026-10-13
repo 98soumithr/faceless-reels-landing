@@ -88,17 +88,17 @@ export function CreateDemo() {
   return (
     <div
       ref={rootRef}
-      className="mx-auto grid w-full max-w-[860px] items-center gap-5 md:grid-cols-[1fr_auto_minmax(190px,220px)] md:gap-6"
+      className="mx-auto grid w-full max-w-[1020px] items-center gap-6 md:grid-cols-[1fr_auto_minmax(250px,300px)] md:gap-9"
     >
       {/* ── Input panel ─────────────────────────────────────────────── */}
-      <div className="card rounded-[18px] p-5 sm:p-6">
+      <div className="card rounded-[22px] p-6 shadow-card-lg sm:p-8">
         <p className="label">{promptLabel}</p>
 
-        <div className="mt-3 flex min-h-[64px] items-start gap-2.5 rounded-[12px] border border-hair bg-paper px-4 py-3.5">
-          <span aria-hidden="true" className="mt-[2px] font-mono text-[15px] text-accent">
+        <div className="mt-4 flex min-h-[76px] items-start gap-2.5 rounded-[14px] border border-hair bg-paper px-5 py-4">
+          <span aria-hidden="true" className="mt-[2px] font-mono text-[17px] text-accent">
             ›
           </span>
-          <p className="ui min-w-0 flex-1 text-left font-mono text-[14px] leading-[1.5] break-words text-ink sm:text-[15px]">
+          <p className="ui min-w-0 flex-1 text-left font-mono text-[16px] leading-[1.5] break-words text-ink sm:text-[17px]">
             {text}
             {showCaret ? (
               <span
@@ -115,7 +115,7 @@ export function CreateDemo() {
             type="button"
             aria-hidden="true"
             tabIndex={-1}
-            className="btn btn-sm px-6 py-3 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(47,107,255,0.7)] transition-transform duration-150"
+            className="btn px-8 py-3.5 text-[16px] font-semibold text-white shadow-[0_10px_24px_-8px_rgba(47,107,255,0.75)] transition-transform duration-150"
             style={{
               backgroundColor: 'var(--accent)',
               transform: clicking ? 'scale(0.94)' : 'scale(1)',
@@ -192,12 +192,26 @@ export function CreateDemo() {
       </div>
 
       {/* ── Output reel ─────────────────────────────────────────────── */}
-      <div className="mx-auto w-[190px] md:w-full">
+      <div className="relative mx-auto w-[230px] md:w-full">
+        {/* Glow that blooms behind the reel as it lands. */}
         <div
-          className="relative aspect-[9/16] overflow-hidden rounded-[16px] border border-hair bg-dark-2 shadow-card-lg transition-all duration-500 ease-out"
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-6 -z-10 rounded-[36px] transition-opacity duration-700"
+          style={{
+            background:
+              'radial-gradient(60% 55% at 50% 45%, rgba(47,107,255,0.5) 0%, rgba(47,107,255,0) 70%)',
+            opacity: done ? 1 : 0,
+            filter: 'blur(20px)',
+          }}
+        />
+        <div
+          className="relative aspect-[9/16] overflow-hidden rounded-[18px] border border-white/60 bg-dark-2 shadow-card-lg transition-all duration-500 ease-out"
           style={{
             opacity: done ? 1 : 0.18,
-            transform: done ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.97)',
+            transform: done ? 'translateY(0) scale(1)' : 'translateY(14px) scale(0.94)',
+            boxShadow: done
+              ? '0 30px 70px -24px rgba(29,79,216,0.55), 0 0 0 1px rgba(255,255,255,0.5)'
+              : undefined,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -232,8 +246,8 @@ export function CreateDemo() {
             className="absolute inset-0 z-10 grid place-items-center transition-opacity duration-500"
             style={{ opacity: done ? 1 : 0 }}
           >
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-white/92 shadow-lg">
-              <svg width="13" height="15" viewBox="0 0 11 12" fill="none" aria-hidden="true">
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-white/92 shadow-lg">
+              <svg width="16" height="18" viewBox="0 0 11 12" fill="none" aria-hidden="true">
                 <path d="M10 5.134c.667.385.667 1.347 0 1.732L1.75 12.49c-.667.385-1.5-.096-1.5-.866V1.377c0-.77.833-1.251 1.5-.866L10 5.134Z" fill="var(--accent)" />
               </svg>
             </span>
@@ -247,7 +261,7 @@ export function CreateDemo() {
         </div>
 
         <p
-          className="ui mt-2.5 h-[18px] text-center text-[13px] font-medium text-ink transition-opacity duration-500 md:text-left"
+          className="ui mt-3.5 h-[22px] text-center text-[15px] font-semibold text-ink transition-opacity duration-500 md:text-left"
           style={{ opacity: done ? 1 : 0 }}
         >
           {output.title}

@@ -1,7 +1,5 @@
 import { hero } from '@/content/content';
 import { ReelMarquee } from './ReelMarquee';
-import { WaitlistForm } from './WaitlistForm';
-import { FlipWord } from './FlipWord';
 import { CreateDemo } from './CreateDemo';
 
 /**
@@ -72,7 +70,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-white pt-[150px] pb-[120px] md:pt-[290px] md:pb-[140px]"
+      className="relative isolate overflow-hidden bg-white pt-[128px] pb-[110px] md:pt-[184px] md:pb-[130px]"
     >
       {/* Soft white base. */}
       <div
@@ -118,37 +116,15 @@ export function Hero() {
       />
 
       <div className="anim-hero shell relative">
-        <h1 className="h1 mx-auto max-w-[900px] text-center text-ink">
-          {hero.headlineLine1}
-          <br />
-          {hero.headlineBeforeWord}{' '}
-          <FlipWord
-            words={hero.niches}
-            intervalMs={1400}
-            className="text-accent italic"
-          />{' '}
-          {hero.headlineAfterWord}
-        </h1>
+        <CreateDemo />
 
-        <p className="mt-8 text-center text-[18px] leading-[1.5] text-ink-soft">
-          {hero.subhead}
-        </p>
-
-        <div className="mt-11 flex justify-center">
-          <WaitlistForm source="hero" tone="light" />
-        </div>
-
-        <div className="mt-16">
-          <CreateDemo />
-        </div>
-
-        <p className="label mt-[72px] flex items-center gap-2.5 text-ink-faint">
+        <p className="label mt-[64px] flex items-center justify-center gap-2.5 text-ink-faint">
           <span className="live-dot" aria-hidden="true" />
           {hero.eyebrow}
         </p>
       </div>
 
-      <ReelMarquee className="relative mt-4" />
+      <ReelMarquee className="relative mt-6" />
     </section>
   );
 }
