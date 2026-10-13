@@ -1,93 +1,81 @@
 @import 'tailwindcss';
 
 /* ---------------------------------------------------------------
-   Brand tokens. Light is the primary design (premium white/blue);
-   dark is authored as a proper second theme, not an inversion.
+   Tokens. Structure mirrors the reference exactly; its warm
+   terracotta scheme is translated to a premium blue.
+     reference #d9482e accent  -> #2f6bff
+     reference #fafaf7 paper   -> #f7f9fc
+     reference #0a0a0a ink     -> #0a0f1c
 ----------------------------------------------------------------*/
 :root {
-  --bg: #ffffff;
-  --bg-2: #f5f8ff;
-  --bg-3: #eef3fe;
+  --paper: #f7f9fc;
+  --paper-2: #eef3fb;
   --card: #ffffff;
-  --fg: #0e1a33;
-  --fg-soft: #46506a;
-  --muted: #8690a8;
-  --line: #e6ebf5;
-  --line-strong: #d4ddf0;
-  --blue: #2f6bff;
-  --blue-deep: #1d4fd8;
-  --blue-soft: #e7eeff;
-  --screen: #0b1530;
-  --good: #1f9d6b;
 
-  --shell: 1200px;
+  --ink: #0a0f1c;
+  --ink-soft: #5b6480;
+  --ink-faint: #8b93a8;
+
+  --accent: #2f6bff;
+  --accent-deep: #1d4fd8;
+  --accent-soft: #e7eeff;
+
+  --hair: rgba(10, 15, 28, 0.08);
+  --hair-strong: rgba(10, 15, 28, 0.14);
+
+  /* Dark surfaces: hero, "why" band, publish mock, footer. */
+  --dark: #080d1a;
+  --dark-2: #0f1830;
+  --dark-3: #141f3c;
+  --dark-line: #26314e;
+  --on-dark: #ffffff;
+  --on-dark-soft: rgba(255, 255, 255, 0.64);
+  --on-dark-faint: rgba(255, 255, 255, 0.38);
+
+  --shell: 1216px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0a1020;
-    --bg-2: #0f1830;
-    --bg-3: #14203f;
-    --card: #0f1831;
-    --fg: #eaf0ff;
-    --fg-soft: #aab6d4;
-    --muted: #727d9c;
-    --line: #1e2a4a;
-    --line-strong: #2a3860;
-    --blue: #5b8bff;
-    --blue-deep: #7aa0ff;
-    --blue-soft: #16244a;
-    --screen: #060c1c;
-  }
-}
-
-/* `inline` so utilities emit var(--bg) directly and follow the theme switch. */
 @theme inline {
-  --color-bg: var(--bg);
-  --color-bg-2: var(--bg-2);
-  --color-bg-3: var(--bg-3);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
   --color-card: var(--card);
-  --color-fg: var(--fg);
-  --color-fg-soft: var(--fg-soft);
-  --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-blue: var(--blue);
-  --color-blue-deep: var(--blue-deep);
-  --color-blue-soft: var(--blue-soft);
-  --color-screen: var(--screen);
-  --color-good: var(--good);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-hair: var(--hair);
+  --color-hair-strong: var(--hair-strong);
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+  --color-dark-3: var(--dark-3);
+  --color-dark-line: var(--dark-line);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-soft: var(--on-dark-soft);
+  --color-on-dark-faint: var(--on-dark-faint);
 
-  --font-display: var(--font-jakarta);
-  --font-sans: var(--font-inter);
-
-  --radius-card: 20px;
-  --radius-pill: 999px;
-
-  --shadow-card:
-    0 1px 2px rgba(14, 26, 51, 0.04), 0 8px 24px -12px rgba(14, 26, 51, 0.1);
-  --shadow-card-lg:
-    0 1px 2px rgba(14, 26, 51, 0.04), 0 24px 56px -24px rgba(14, 26, 51, 0.16);
+  --font-serif: Erode, Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
 }
 
 @layer base {
-  /* Tailwind v4 resets border-color to currentColor; use our hairline. */
   *,
   ::before,
   ::after {
-    border-color: var(--line);
+    border-color: var(--hair);
   }
 
   html {
     scroll-behavior: smooth;
-    /* Sticky nav offset for anchor links. */
-    scroll-padding-top: 88px;
+    scroll-padding-top: 110px;
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-inter), system-ui, sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    /* The reference sets a serif as the document face. */
+    font-family: Erode, Georgia, 'Times New Roman', serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -96,23 +84,14 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-jakarta), system-ui, sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
+    font-family: Erode, Georgia, 'Times New Roman', serif;
+    font-weight: 600;
   }
 
-  /* Visible focus for keyboard users everywhere. */
   :focus-visible {
-    outline: 2px solid var(--blue);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
     border-radius: 6px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
   }
 }
 
@@ -121,33 +100,49 @@
     width: 100%;
     max-width: var(--shell);
     margin-inline: auto;
-    padding-inline: 20px;
+    padding-inline: 24px;
   }
 
-  @media (min-width: 768px) {
-    .shell {
-      padding-inline: 32px;
-    }
+  /* Reference type scale (1440px): h1 96/-1.5%, h2 52/-1.5%, h3 36/-2% */
+  .h1 {
+    font-size: clamp(42px, 6.7vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    font-weight: 600;
   }
 
-  /* Generous section rhythm, matching the reference's banded feel. */
-  .section {
-    padding-block: 72px;
+  .h2 {
+    font-size: clamp(32px, 3.6vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    font-weight: 600;
   }
 
-  @media (min-width: 768px) {
-    .section {
-      padding-block: 96px;
-    }
+  .h3 {
+    font-size: clamp(26px, 2.5vw, 36px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    font-weight: 600;
   }
 
-  .eyebrow {
-    font-size: 11.5px;
-    font-weight: 700;
-    line-height: 1;
+  /* Accent italic serif used in the second half of several headings. */
+  .accented {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* Small uppercase label, e.g. "• MADE WITH ..." and field labels. */
+  .label {
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--blue-deep);
+    color: var(--ink-faint);
+  }
+
+  .ui {
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
   }
 
   .btn {
@@ -156,108 +151,125 @@
     justify-content: center;
     gap: 8px;
     border-radius: 999px;
-    font-weight: 600;
-    font-size: 14.5px;
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-weight: 500;
     line-height: 1;
     white-space: nowrap;
     transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      color 160ms ease,
-      box-shadow 160ms ease,
-      transform 160ms ease;
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      opacity 180ms ease;
   }
 
-  .btn-primary {
-    background-color: var(--blue);
-    color: #ffffff;
-    padding-block: 13px;
-    padding-inline: 22px;
-    box-shadow:
-      0 1px 2px rgba(47, 107, 255, 0.24),
-      0 10px 24px -10px rgba(47, 107, 255, 0.45);
+  /* Reference nav buttons: 14px/500, padding 9px 16px, radius 999. */
+  .btn-sm {
+    font-size: 14px;
+    padding: 9px 16px;
   }
 
-  .btn-primary:hover {
-    background-color: var(--blue-deep);
+  /* Reference hero CTA: 15px/600, padding 13px 26px. */
+  .btn-lg {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 26px;
   }
 
-  .btn-secondary {
+  .btn-ink {
+    background-color: var(--ink);
+    color: #fff;
+  }
+
+  .btn-ink:hover {
+    background-color: #1a2236;
+  }
+
+  .btn-on-dark {
+    background-color: #fff;
+    color: var(--ink);
+  }
+
+  .btn-ghost-on-dark {
     background-color: transparent;
-    color: var(--fg);
-    padding-block: 13px;
-    padding-inline: 22px;
-    border: 1px solid var(--line-strong);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.55);
   }
 
-  .btn-secondary:hover {
-    border-color: var(--blue);
-    color: var(--blue-deep);
+  .btn-ghost-on-dark:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
+  /* Reference cards: r=14, 1px rgba(ink,.08), very soft shadow. */
   .card {
     background-color: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 20px;
+    border: 1px solid var(--hair);
+    border-radius: 14px;
     box-shadow:
-      0 1px 2px rgba(14, 26, 51, 0.04),
-      0 8px 24px -12px rgba(14, 26, 51, 0.1);
+      0 1px 2px rgba(10, 15, 28, 0.04),
+      0 8px 24px -16px rgba(10, 15, 28, 0.1);
   }
 
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  .card-dark {
+    background-color: #0f1831;
+    border: 1px solid var(--dark-line);
+    border-radius: 14px;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Inner field inside a dark card (reference rgb(31,31,31), r=8). */
+  .field-dark {
+    background-color: #16203c;
+    border: 1px solid var(--dark-line);
+    border-radius: 8px;
+  }
+
+  /* The accent dot that precedes step titles and eyebrows. */
+  .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
     border-radius: 999px;
-    background-color: var(--blue-soft);
-    color: var(--blue-deep);
-    padding-block: 5px;
-    padding-inline: 11px;
-    font-size: 11.5px;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-
-  .step-num {
-    font-family: var(--font-jakarta), system-ui, sans-serif;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: var(--blue);
+    background-color: var(--accent);
+    animation: livePulse 1.6s ease-in-out infinite;
   }
 }
 
-/* ---------------------------------------------------------------
-   Reel marquee. The track holds the card set twice, so a -50%
-   translation lands exactly on the duplicate and loops seamlessly.
-----------------------------------------------------------------*/
-.marquee {
-  position: relative;
-  overflow: hidden;
+/* ===============================================================
+   Animations — same names, timings and easings as the reference.
+================================================================*/
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 60s linear infinite;
-  will-change: transform;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/*
- * Spacing is a per-item margin, not `gap`. With `gap` the track measures
- * (12 cards + 11 gaps) while the repeat period is (6 cards + 6 gaps), so
- * translateX(-50%) undershoots by half a gap and the loop visibly jumps.
- */
-.marquee-track > * {
-  margin-right: 16px;
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
 }
 
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
+@keyframes reelScroll {
   from {
     transform: translateX(0);
   }
@@ -266,31 +278,151 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
+@keyframes reelScrollRev {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 
-/* Fade the marquee edges into the page background. */
-.marquee-mask {
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 72px,
-    #000 calc(100% - 72px),
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 72px,
-    #000 calc(100% - 72px),
-    transparent
-  );
+@keyframes caretBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
-/* FAQ accordion: "+" rotates into "x" on open. */
+@keyframes waveBar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes editorSeg {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes editorScrub {
+  0% {
+    left: 2%;
+  }
+  100% {
+    left: 98%;
+  }
+}
+
+@keyframes scissorsBlink {
+  0%,
+  42%,
+  58%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes moBar {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.anim-hero {
+  animation: heroFadeIn 0.3s linear both;
+}
+
+/* Scroll reveal: elements start hidden and animate when observed. */
+.reveal {
+  opacity: 0;
+}
+
+.reveal.in {
+  animation: fadeUp 0.85s ease both;
+}
+
+.reveal-fast.in {
+  animation: fadeUp 0.7s ease both;
+}
+
+.reel-row {
+  display: flex;
+  width: max-content;
+  animation: reelScroll 95s linear infinite;
+  will-change: transform;
+}
+
+.reel-row-rev {
+  animation: reelScrollRev 120s linear infinite;
+}
+
+/* Spacing is a per-item margin, not `gap`: with `gap` the track measures
+   (2n cards + 2n-1 gaps) while the repeat period is (n cards + n gaps), so
+   translateX(-50%) undershoots by half a gap and the loop jumps. */
+.reel-row > * {
+  margin-right: 16px;
+}
+
+.reel-wrap:hover .reel-row {
+  animation-play-state: paused;
+}
+
+.edge-mask {
+  mask-image: linear-gradient(to right, transparent, #000 90px, #000 calc(100% - 90px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 90px, #000 calc(100% - 90px), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reel-row,
+  .reel-row-rev,
+  .live-dot,
+  .anim-hero {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+  }
+
+  .reveal.in {
+    animation: none;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* FAQ accordion */
 .faq-item summary::-webkit-details-marker {
   display: none;
 }
@@ -306,10 +438,4 @@
 
 .faq-item[open] .faq-sign {
   transform: rotate(45deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .faq-sign {
-    transition: none;
-  }
 }

@@ -1,23 +1,35 @@
 import type { ReelMedia } from '@/content/content';
 
 /**
- * The 9:16 video surface. This is the single swap point for real media:
- * pass `{ kind: 'image', src }` or `{ kind: 'video', src, poster }` from
- * content.ts and the layout around it does not change. See README.md.
+ * The video surface. This is the single swap point for real media: pass
+ * `{ kind: 'image', src }` or `{ kind: 'video', src, poster }` from
+ * content.ts and nothing around it changes.
+ *
+ * Defaults to 16:9. Pass `ratio` (e.g. "9 / 16") or an `aspect-*` class in
+ * `className` — when an aspect class is present the inline ratio is skipped
+ * so the class wins.
  */
 export function ReelSurface({
   media,
   className = '',
+  ratio = '16 / 9',
+  scrim = true,
   children,
 }: {
   media: ReelMedia;
   className?: string;
+  ratio?: string;
+  scrim?: boolean;
   children?: React.ReactNode;
 }) {
+  const style: React.CSSProperties = {};
+  if (!/\baspect-/.test(className)) style.aspectRatio = ratio;
+  if (media.kind === 'gradient') style.background = media.gradient;
+
   return (
     <div
-      className={`relative isolate aspect-[9/16] overflow-hidden rounded-[16px] bg-screen ${className}`}
-      style={media.kind === 'gradient' ? { background: media.gradient } : undefined}
+      className={`relative isolate overflow-hidden rounded-[10px] bg-dark-2 ${className}`}
+      style={style}
     >
       {media.kind === 'image' ? (
         // eslint-disable-next-line @next/next/no-img-element
@@ -42,16 +54,22 @@ export function ReelSurface({
         />
       ) : null}
 
-      {/* Readability scrim under the bottom text. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/25 to-transparent"
-      />
+      {scrim ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 via-black/15 to-transparent"
+        />
+      ) : null}
+
       {children}
     </div>
   );
 }
 
+/**
+ * Marquee row 1: a dark 16:9 video surface with an accent tag top-right
+ * and the runtime bottom-right.
+ */
 export function ReelCard({
   tag,
   title,
@@ -60,25 +78,73 @@ export function ReelCard({
   className = '',
 }: {
   tag: string;
-  title: string;
+  title?: string;
   runtime: string;
   media: ReelMedia;
   className?: string;
 }) {
   return (
-    <ReelSurface media={media} className={className}>
-      <span className="absolute left-2.5 top-2.5 z-10 rounded-pill bg-white/15 px-2.5 py-1 text-[10.5px] font-semibold text-white backdrop-blur-sm">
+    <ReelSurface
+      media={media}
+      className={`border border-white/[0.08] ${className}`}
+    >
+      {title ? (
+        <p className="absolute top-3.5 left-4 z-10 max-w-[58%] text-[13px] leading-[1.25] text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,0.75)]">
+          {title}
+        </p>
+      ) : null}
+
+      <span className="ui absolute top-3.5 right-4 z-10 inline-flex items-center gap-[7px] text-[10.5px] font-medium tracking-[0.18em] text-white/70 uppercase">
+        <span
+          aria-hidden="true"
+          className="h-[5px] w-[5px] shrink-0 rounded-full bg-accent"
+        />
         {tag}
       </span>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-2 p-3">
-        <p className="font-display text-[13px] font-bold leading-[1.25] text-white [text-wrap:balance]">
-          {title}
-        </p>
-        <span className="shrink-0 pb-px text-[11px] font-semibold tabular-nums text-white/75">
-          {runtime}
-        </span>
-      </div>
+      <span className="ui absolute right-4 bottom-3 z-10 text-[12px] font-medium tabular-nums text-white/70">
+        {runtime}
+      </span>
+    </ReelSurface>
+  );
+}
+
+/**
+ * Marquee row 2: thumbnail style — a big condensed all-caps headline
+ * across the lower half, white with a heavy dark outline.
+ */
+export function ReelThumbCard({
+  overlay,
+  media,
+  className = '',
+}: {
+  overlay: string;
+  media: ReelMedia;
+  className?: string;
+}) {
+  return (
+    <ReelSurface
+      media={media}
+      scrim={false}
+      className={`rounded-[6px] border border-white/20 ${className}`}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+      />
+      <p
+        className="ui absolute inset-x-0 bottom-[7%] z-10 px-[3%] text-center text-[20px] leading-[0.95] font-extrabold tracking-[-0.02em] text-white uppercase sm:text-[25px] lg:text-[31px]"
+        style={{
+          // Inter has no condensed cut; squeezing it reproduces the
+          // reference's thumbnail lettering and keeps it on one line.
+          transform: 'scaleX(0.86)',
+          WebkitTextStroke: '4px rgba(0,0,0,0.9)',
+          paintOrder: 'stroke fill',
+          textShadow: '0 3px 0 rgba(0,0,0,0.5)',
+        }}
+      >
+        {overlay}
+      </p>
     </ReelSurface>
   );
 }

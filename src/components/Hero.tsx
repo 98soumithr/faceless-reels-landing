@@ -1,39 +1,107 @@
 import { hero } from '@/content/content';
-import { WaitlistForm } from './WaitlistForm';
 import { ReelMarquee } from './ReelMarquee';
+import { WaitlistForm } from './WaitlistForm';
+
+/**
+ * Full-bleed dark hero. The reference's warm gradient mesh (gold core,
+ * red bleed, bright diagonal streak) is translated one-for-one into the
+ * blue brand ramp — same shapes, same positions, no warm hues.
+ */
+const MESH = [
+  // Darkening passes, painted over the blobs (first layer = topmost).
+  'radial-gradient(1000px 780px at 100% 0%, rgba(4,8,18,0.95) 0%, rgba(4,8,18,0) 62%)',
+  // Keep the centre — where the headline sits — near-black, as in the
+  // reference. Without this the blooms below wash the whole stage out.
+  'radial-gradient(1150px 880px at 60% 34%, rgba(5,9,18,0.94) 0%, rgba(5,9,18,0.55) 46%, rgba(5,9,18,0) 72%)',
+  'linear-gradient(to right, rgba(8,13,26,0) 34%, rgba(8,13,26,0.78) 68%, rgba(8,13,26,0.98) 100%)',
+  'linear-gradient(to bottom, rgba(8,13,26,0.96) 0%, rgba(8,13,26,0.62) 14%, rgba(8,13,26,0) 34%)',
+  // Bright core (the reference's gold), then the bleed outward.
+  // The reference keeps its glow as a crescent hugging the left and
+  // bottom-left edges; the stage stays near-black everywhere else.
+  'radial-gradient(420px 330px at 3% 58%, rgba(168,204,255,0.82) 0%, rgba(168,204,255,0) 66%)',
+  'radial-gradient(760px 580px at 0% 60%, rgba(64,124,250,0.78) 0%, rgba(64,124,250,0) 68%)',
+  'radial-gradient(900px 640px at 12% 93%, rgba(42,96,230,0.7) 0%, rgba(42,96,230,0) 70%)',
+  'radial-gradient(820px 640px at 21% 72%, rgba(28,70,185,0.42) 0%, rgba(28,70,185,0) 74%)',
+  'radial-gradient(640px 480px at 23% 9%, rgba(20,48,138,0.46) 0%, rgba(20,48,138,0) 72%)',
+  'radial-gradient(760px 600px at 0% 104%, rgba(88,144,255,0.4) 0%, rgba(88,144,255,0) 64%)',
+  'linear-gradient(#060a13, #060a13)',
+].join(',');
+
+const GRAIN =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-[72px] md:pt-[104px]">
-      {/* Soft blue glow behind the headline. */}
+    <section
+      id="top"
+      className="relative isolate overflow-hidden bg-dark pt-[150px] pb-[240px] md:pt-[290px] md:pb-[300px]"
+    >
+      {/* Gradient mesh. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[-180px] h-[520px] w-[min(1000px,140vw)] -translate-x-1/2 rounded-[50%] opacity-70"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{ background: MESH }}
+      />
+
+      {/* Thin bright diagonal streak out of the top-right, plus its halo. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-[-300px] left-[84%] -z-10 h-[1250px] w-[140px] origin-top -rotate-[26deg]"
         style={{
           background:
-            'radial-gradient(50% 50% at 50% 50%, var(--blue-soft) 0%, transparent 70%)',
+            'linear-gradient(to bottom, rgba(120,170,255,0) 0%, rgba(136,180,255,0.34) 28%, rgba(196,220,255,0.5) 50%, rgba(120,170,255,0) 84%)',
+          filter: 'blur(34px)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-[-290px] left-[86%] -z-10 h-[1200px] w-[3px] origin-top -rotate-[26deg]"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(214,232,255,0.8) 30%, rgba(186,214,255,0.62) 58%, rgba(255,255,255,0) 88%)',
+          filter: 'blur(1.6px)',
         }}
       />
 
-      <div className="shell relative text-center">
-        <p className="eyebrow">{hero.eyebrow}</p>
+      {/* Film grain, as in the reference. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.22] mix-blend-overlay"
+        style={{ backgroundImage: GRAIN, backgroundSize: '160px 160px' }}
+      />
 
-        <h1 className="mx-auto mt-5 max-w-[860px] text-[38px] leading-[1.06] sm:text-[52px] md:text-[64px]">
+      <div className="anim-hero shell relative">
+        <h1 className="h1 mx-auto max-w-[900px] text-center text-[#eaeff8]">
           {hero.headlineLead}
-          <span className="text-blue">{hero.headlineAccent}</span>
+          <br />
           {hero.headlineTail}
         </h1>
 
-        <p className="mx-auto mt-5 max-w-[520px] text-[16.5px] font-medium leading-[1.55] text-fg-soft">
+        <p className="mt-8 text-center text-[18px] leading-[1.5] text-on-dark-soft">
           {hero.subhead}
         </p>
 
-        <WaitlistForm source="hero" className="mt-8" />
+        <div className="mt-11 flex justify-center">
+          <WaitlistForm source="hero" tone="dark" />
+        </div>
 
-        <p className="mt-4 text-[12.5px] font-medium text-muted">{hero.formNote}</p>
+        <p className="label mt-[108px] flex items-center gap-2.5 text-on-dark-faint">
+          <span className="live-dot" aria-hidden="true" />
+          {hero.eyebrow}
+        </p>
       </div>
 
-      <ReelMarquee className="mt-16 md:mt-20" />
+      <ReelMarquee className="relative mt-4" />
+
+      {/* The dark fades into the page's paper at the very bottom. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[300px]"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(247,249,252,0) 0%, rgba(247,249,252,0.08) 45%, var(--paper) 100%)',
+        }}
+      />
     </section>
   );
 }

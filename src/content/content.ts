@@ -1,19 +1,12 @@
 /**
  * Every word on the page lives here. Edit copy without touching JSX.
- * Reel/video media is a swappable prop — see `ReelMedia` and README.md.
+ * Structure mirrors the reference layout; the words are ours.
  */
 
 export type ReelMedia =
   | { kind: 'gradient'; gradient: string }
   | { kind: 'image'; src: string; alt: string }
   | { kind: 'video'; src: string; poster?: string };
-
-export type Reel = {
-  tag: string;
-  title: string;
-  runtime: string;
-  media: ReelMedia;
-};
 
 export const brand = {
   name: 'Faceless Reels',
@@ -23,7 +16,7 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: 'How it works', href: '#pipeline' },
+    { label: 'How it works', href: '#how' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
@@ -32,120 +25,149 @@ export const nav = {
 };
 
 export const hero = {
-  eyebrow: 'Made with Faceless Reels',
-  headlineLead: 'Turn a sentence into a ',
-  headlineAccent: 'history reel',
-  headlineTail: '.',
+  headlineLead: 'Turn a sentence into',
+  headlineTail: 'a history reel',
   subhead: 'Faceless. Automated. Studio-grade.',
-  formNote: 'Early access · founding-member pricing · no spam',
+  cta: 'Join the waitlist',
+  note: 'Early access · founding-member pricing · no spam',
+  eyebrow: 'Made with Faceless Reels',
 };
 
-/** Six sample reels for the hero marquee. Swap `media` for real thumbnails/MP4s. */
-export const marqueeReels: Reel[] = [
+/** Marquee row 1 — tag / title / runtime over a dark 16:9 surface. */
+export const reelRowTop: {
+  tag: string;
+  title: string;
+  runtime: string;
+  media: ReelMedia;
+}[] = [
   {
     tag: 'History',
     title: 'The town on fire since 1962',
     runtime: '0:41',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #3a1f14 0%, #0b1530 58%, #08101f 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1b2a52 0%,#0a1024 60%,#070c1b 100%)' },
   },
   {
     tag: 'Disbelief',
     title: 'The Halifax Explosion',
     runtime: '0:44',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #1b3350 0%, #0b1530 55%, #070d1c 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#17345c 0%,#0a1024 58%,#060b18 100%)' },
   },
   {
     tag: 'Dark',
     title: 'The Dancing Plague of 1518',
     runtime: '0:38',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #2a1838 0%, #0d1430 58%, #080e1e 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#232a5e 0%,#0b1026 60%,#070c1c 100%)' },
   },
   {
     tag: 'Local',
     title: "America's lost roadside giants",
     runtime: '0:36',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #1d3a33 0%, #0b1530 56%, #070e1d 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#143a50 0%,#0a1024 58%,#060b19 100%)' },
   },
   {
     tag: 'Myth vs Fact',
     title: 'The telegram that sank a presidency',
     runtime: '0:47',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #33281a 0%, #0c1430 57%, #080e1e 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1d2c63 0%,#0a1024 60%,#070c1b 100%)' },
   },
   {
     tag: 'History',
     title: 'The island nobody can leave',
     runtime: '0:40',
-    media: { kind: 'gradient', gradient: 'linear-gradient(155deg, #152f46 0%, #0b1530 55%, #070d1b 100%)' },
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#102f4e 0%,#0a1024 56%,#060b18 100%)' },
   },
 ];
 
+/** Marquee row 2 — thumbnail style, big overlay headline. */
+export const reelRowBottom: {
+  overlay: string;
+  media: ReelMedia;
+}[] = [
+  {
+    overlay: 'BURNING SINCE 1962',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)' },
+  },
+  {
+    overlay: '36 FEET FROM DARK',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1a4a6e 0%,#0e1733 70%,#090f20 100%)' },
+  },
+  {
+    overlay: 'EXPERTS ARE STUNNED',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#324a86 0%,#121c3c 70%,#0a1126 100%)' },
+  },
+  {
+    overlay: 'NOBODY CAME BACK',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#153a63 0%,#0d1630 70%,#080e1e 100%)' },
+  },
+  {
+    overlay: '2,000 TONS OF TNT',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#27356d 0%,#101838 70%,#090f22 100%)' },
+  },
+  {
+    overlay: 'THE LOST GIANTS',
+    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1c4560 0%,#0d1730 70%,#080e1f 100%)' },
+  },
+];
+
+/**
+ * Pipeline steps. `artifact` selects which animated mini-visual renders
+ * on the right-hand side of the row (see StepArtifact).
+ */
+export type Artifact = 'caret' | 'checklist' | 'wave' | 'editor' | 'keyframes' | 'thumbs';
+
 export const pipeline = {
-  eyebrow: 'How it works',
-  heading: 'Six specialists. One finished reel.',
-  subtext:
-    'You give one line. A chain of AI specialists researches, writes, narrates, sources the footage, and cuts it — the way a real studio would.',
-  promptLabel: 'Prompt',
+  heading: 'How it works',
+  promptLabelLeft: 'Your prompt',
+  promptLabelRight: 'Your idea',
   promptValue: 'the halifax explosion of 1917, 45 sec, cinematic',
   steps: [
-    {
-      num: '01',
-      title: 'Script Writer',
-      body: 'Builds the story: a hook that stops the scroll, a turn, and a payoff worth a comment.',
-      chip: 'Hook · beats · payoff',
-    },
-    {
-      num: '02',
-      title: 'Fact Checker',
-      body: "Every name, date and number verified against tiered historical sources before it's spoken.",
-      chip: 'Cited · 75%+ sourced',
-    },
-    {
-      num: '03',
-      title: 'Voiceover',
-      body: 'Reads the script with real emphasis and pauses — not flat text-to-speech.',
-      chip: 'Expressive narration',
-    },
-    {
-      num: '04',
-      title: 'Archival Sourcing',
-      body: 'Pulls era-correct photos from the Library of Congress, Commons and the National Archives.',
-      chip: 'Real archival footage',
-    },
-    {
-      num: '05',
-      title: 'Motion Designer',
-      body: 'Cut-outs, spotlights, ink annotations, dated timelines — a treatment chosen per shot.',
-      chip: 'Cinematic edit',
-    },
-    {
-      num: '06',
-      title: 'Thumbnail & Caption',
-      body: 'Designs the cover frame and writes the caption and hashtags, ready to post.',
-      chip: '1080×1920 · ready',
-    },
+    { num: '01', title: 'Script Writer', does: 'writes the story', artifact: 'caret' as Artifact },
+    { num: '02', title: 'Fact Checker', does: 'verifies every claim', artifact: 'checklist' as Artifact },
+    { num: '03', title: 'Voiceover', does: 'reads it out loud', artifact: 'wave' as Artifact },
+    { num: '04', title: 'Archival Sourcing', does: 'finds era-correct footage', artifact: 'editor' as Artifact },
+    { num: '05', title: 'Motion Designer', does: 'adds graphics', artifact: 'keyframes' as Artifact },
+    { num: '06', title: 'Thumbnail & Caption', does: 'designs the cover frame', artifact: 'thumbs' as Artifact },
   ],
+  /** Text shown inside each step's artifact. */
+  artifactCopy: {
+    caret: '[hook 0:00] the town that has burned for',
+    checklist: [
+      { done: false, text: 'Centralia fire: 1962' },
+      { done: true, text: 'Mine shaft ignited' },
+      { done: true, text: '62 years burning' },
+    ],
+    wave: { left: '00:00:41', right: 'en · clone · 1' },
+    editor: { left: 'v · a · m', right: '38 cuts' },
+    keyframes: { left: 'kf · 10/10', right: 'ease.inout' },
+    thumbs: { right: 'A/B · 3' },
+  },
+  publishHeadingLead: 'Ready to ',
+  publishHeadingAccent: 'publish',
 };
 
 export const publishMock = {
+  panelTitle: 'Reel details',
   runtime: '0:42',
-  titleLabel: 'Title',
+  titleLabel: 'Title (required)',
+  titleCounter: '44/100',
   title: "The town that's been on fire since 1962",
-  counter: '38/60',
   descriptionLabel: 'Description',
+  descriptionCounter: '86/5000',
   description:
-    'A reel on Centralia, Pennsylvania — the mine fire that emptied a town.',
-  hashtags: ['#history', '#ushistory', '#centralia', '#didyouknow'],
+    'Centralia, Pennsylvania sits on a coal seam that caught fire in 1962 and never stopped burning — the town was condemned and emptied, and the fire is still going.',
+  tagsLabel: 'Tags',
+  tags: ['centralia', 'us history', 'mine fire', 'did you know'],
   cta: 'Publish',
   media: {
     kind: 'gradient',
-    gradient: 'linear-gradient(155deg, #3a1f14 0%, #0b1530 58%, #08101f 100%)',
+    gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)',
   } satisfies ReelMedia,
 };
 
 export const showcase = {
-  eyebrow: 'See it',
-  heading: 'Reels made start-to-finish by the engine.',
+  headingLead: 'Reels made ',
+  headingAccent: 'start to finish',
+  headingTail: ' by the engine',
   subtext:
     'No human touched the edit. This is the raw output — the demo and the product are the same thing.',
   reels: [
@@ -153,78 +175,59 @@ export const showcase = {
       tag: 'Disbelief',
       title: 'The Halifax Explosion',
       runtime: '0:44',
-      media: {
-        kind: 'gradient',
-        gradient: 'linear-gradient(155deg, #1b3350 0%, #0b1530 55%, #070d1c 100%)',
-      },
+      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#17345c 0%,#0a1024 58%,#060b18 100%)' },
     },
     {
       tag: 'Dark curiosity',
       title: 'The Dancing Plague of 1518',
       runtime: '0:38',
-      media: {
-        kind: 'gradient',
-        gradient: 'linear-gradient(155deg, #2a1838 0%, #0d1430 58%, #080e1e 100%)',
-      },
+      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#232a5e 0%,#0b1026 60%,#070c1c 100%)' },
     },
     {
       tag: 'Local pride',
       title: 'Why Centralia Still Burns',
       runtime: '0:41',
-      media: {
-        kind: 'gradient',
-        gradient: 'linear-gradient(155deg, #3a1f14 0%, #0b1530 58%, #08101f 100%)',
-      },
+      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)' },
     },
-  ] satisfies Reel[],
+  ] satisfies { tag: string; title: string; runtime: string; media: ReelMedia }[],
 };
 
 export const stats = [
-  {
-    value: '~4 min',
-    body: 'From one-line prompt to a finished, postable reel.',
-  },
-  {
-    value: '10×',
-    body: 'More reels a day than hand-editing, so you can test more hooks.',
-  },
-  {
-    value: '$0',
-    body: 'Editors, voice actors and footage licenses — replaced by one tool.',
-  },
+  { value: '~4 min', body: 'From one-line prompt to a finished, postable reel.' },
+  { value: '10×', body: 'More reels a day than hand-editing, so you can test more hooks.' },
+  { value: '$0', body: 'Editors, voice actors and footage licenses — replaced by one tool.' },
 ];
 
 export const reasons = {
-  eyebrow: 'Why Faceless Reels',
-  heading: 'Six reasons people pick it over the generic tools.',
+  headingLead: 'Why Faceless Reels. ',
+  headingAccent: 'Six reasons people pick it',
+  /** The first reason is rendered as the large feature card. */
+  lead: {
+    title: 'Replaces a whole stack of tools',
+    body: 'Editor, researcher, voice actor, footage licence and thumbnail designer — one prompt replaces all of them, and the output is good enough to post without a pass.',
+  },
   items: [
     {
-      num: '01',
       title: 'One niche, done right',
-      body: 'Not a horizontal tool. History only — researched, sourced and edited better than anything general-purpose can manage.',
+      body: 'History only — researched, sourced and edited better than anything general-purpose manages.',
     },
     {
-      num: '02',
       title: 'Accuracy is the moat',
-      body: 'Every fact is cited. One wrong date in the comments kills a history channel — so we gate on sourcing.',
+      body: 'Every fact cited. One wrong date in the comments kills a history channel, so we gate on sourcing.',
     },
     {
-      num: '03',
       title: 'Volume without a team',
-      body: 'Dozens of reels a day. Testing a new hook stops being a gamble when each one costs minutes.',
+      body: 'Dozens of reels a day. Testing a hook stops being a gamble when each one costs minutes.',
     },
     {
-      num: '04',
       title: 'Not a slideshow',
       body: 'Cut-outs, spotlights, period frames and dated timelines — a real edit, not stock clips with music.',
     },
     {
-      num: '05',
       title: 'Ready to publish',
-      body: 'Caption, hashtags and a cover frame come with every reel. Download and post, or auto-schedule.',
+      body: 'Caption, hashtags and a cover frame with every reel. Download and post, or auto-schedule.',
     },
     {
-      num: '06',
       title: 'The output is the ad',
       body: "Generic tools can't show off because their output is generic. Yours is the demo that sells the tool.",
     },
@@ -232,8 +235,8 @@ export const reasons = {
 };
 
 export const comparison = {
-  eyebrow: 'The math',
-  heading: 'Editors, footage, voice actors. Or just Faceless Reels.',
+  headingLead: 'Editors, footage, voice actors. ',
+  headingAccent: 'Or just Faceless Reels',
   callout: '~20× cheaper',
   old: {
     title: 'The old way',
@@ -245,7 +248,7 @@ export const comparison = {
       'Posting a daily channel becomes a full-time job',
     ],
     footLabel: 'Typical cost:',
-    footValue: '$80–200 per reel.',
+    footValue: '$80–200 per reel',
   },
   ours: {
     title: 'With Faceless Reels',
@@ -257,7 +260,7 @@ export const comparison = {
       'A daily channel runs on autopilot',
     ],
     footLabel: 'Your cost:',
-    footValue: 'under $1 per reel.',
+    footValue: 'under $1 per reel',
   },
 };
 
@@ -266,58 +269,57 @@ export type Tier = {
   monthly: number;
   yearly: number;
   who: string;
-  features: string[];
+  /** Line shown in the "credits" slot of the reference card. */
+  allowance: string;
+  features: { text: string; sub?: string }[];
   popular?: boolean;
 };
 
 export const pricing = {
-  eyebrow: 'Launch pricing',
-  heading: 'Founding-member pricing, locked for good.',
-  subtext:
-    'Join the waitlist to claim these prices before they rise at launch.',
+  headingLead: 'Founding-member pricing, ',
+  headingAccent: 'locked for good',
+  yearlyBadge: '2 months free',
   audienceToggle: ['Individual', 'Business'] as const,
   cycleToggle: ['Monthly', 'Yearly'] as const,
-  yearlyBadge: '2 months free',
   cta: 'Join waitlist',
-  footLink: { label: "See what's included →", href: '#faq' },
-  /**
-   * Prices are per month. `yearly` already reflects ~2 months free.
-   * Business currently mirrors Individual — swap in different numbers here
-   * and the toggle picks them up with no component changes.
-   */
+  footLink: { label: 'See full plan comparison', href: '#faq' },
+  billedYearly: 'billed yearly',
   tiers: {
     Individual: [
       {
         name: 'Free',
         monthly: 0,
         yearly: 0,
-        who: 'See the quality for yourself before anything else.',
+        who: 'See the quality for yourself first.',
+        allowance: '1 reel total',
         features: [
-          '1 full history reel',
-          'Full quality, watermarked',
-          'No card required',
+          { text: '1 full history reel' },
+          { text: 'Full quality, watermarked' },
+          { text: 'No card required' },
         ],
       },
       {
         name: 'Starter',
         monthly: 14,
         yearly: 12,
-        who: 'A steady trickle of reels to warm up a new channel.',
+        who: 'A steady trickle to warm up a new channel.',
+        allowance: '12 reels / mo',
         features: [
-          'A few reels a week, no watermark',
-          'Every story format',
-          'Download & post yourself',
+          { text: 'A few reels a week', sub: 'no watermark' },
+          { text: 'Every story format' },
+          { text: 'Download & post yourself' },
         ],
       },
       {
         name: 'Creator',
         monthly: 29,
         yearly: 24,
-        who: 'Run a channel that posts every day without lifting a finger.',
+        who: 'Post every day without lifting a finger.',
+        allowance: '40 reels / mo',
         features: [
-          'Daily reels, no watermark',
-          'Auto-schedule to TikTok, IG & YouTube',
-          'Source & accuracy report per reel',
+          { text: 'Daily reels, no watermark' },
+          { text: 'Auto-schedule to TikTok, IG & YouTube' },
+          { text: 'Source & accuracy report per reel' },
         ],
         popular: true,
       },
@@ -325,67 +327,24 @@ export const pricing = {
         name: 'Studio',
         monthly: 59,
         yearly: 49,
-        who: 'For operators running a portfolio of accounts.',
+        who: 'For operators running a portfolio.',
+        allowance: 'Unlimited reels',
         features: [
-          'Everything in Creator',
-          'Unlimited reels & multiple accounts',
-          'Batch generation & priority rendering',
+          { text: 'Everything in Creator' },
+          { text: 'Unlimited reels & multiple accounts' },
+          { text: 'Batch generation & priority rendering' },
         ],
       },
     ] satisfies Tier[],
-    Business: [
-      {
-        name: 'Free',
-        monthly: 0,
-        yearly: 0,
-        who: 'See the quality for yourself before anything else.',
-        features: [
-          '1 full history reel',
-          'Full quality, watermarked',
-          'No card required',
-        ],
-      },
-      {
-        name: 'Starter',
-        monthly: 14,
-        yearly: 12,
-        who: 'A steady trickle of reels to warm up a new channel.',
-        features: [
-          'A few reels a week, no watermark',
-          'Every story format',
-          'Download & post yourself',
-        ],
-      },
-      {
-        name: 'Creator',
-        monthly: 29,
-        yearly: 24,
-        who: 'Run a channel that posts every day without lifting a finger.',
-        features: [
-          'Daily reels, no watermark',
-          'Auto-schedule to TikTok, IG & YouTube',
-          'Source & accuracy report per reel',
-        ],
-        popular: true,
-      },
-      {
-        name: 'Studio',
-        monthly: 59,
-        yearly: 49,
-        who: 'For operators running a portfolio of accounts.',
-        features: [
-          'Everything in Creator',
-          'Unlimited reels & multiple accounts',
-          'Batch generation & priority rendering',
-        ],
-      },
-    ] satisfies Tier[],
-  },
+    get Business() {
+      return pricing.tiers.Individual;
+    },
+  } as { Individual: Tier[]; Business: Tier[] },
 };
 
 export const faq = {
-  eyebrow: 'FAQ',
-  heading: 'Questions. Short answers.',
+  headingLead: 'Questions. ',
+  headingAccent: 'Short answers',
   items: [
     {
       q: 'What do I get?',
@@ -415,13 +374,11 @@ export const faq = {
 };
 
 export const closing = {
-  eyebrow: 'Be first in line',
-  headlineLead: 'Put your history channel ',
-  headlineAccent: 'on autopilot',
-  headlineTail: '.',
+  headingLead: 'Put your history channel ',
+  headingAccent: 'on autopilot',
   subtext:
     'One prompt in, a finished reel out — on a schedule. Join the waitlist and be among the first to make one.',
-  formNote: 'Early access · founding-member pricing · no spam',
+  note: 'Early access · founding-member pricing · no spam',
 };
 
 export const footer = {
@@ -429,7 +386,7 @@ export const footer = {
     {
       title: 'Product',
       links: [
-        { label: 'How it works', href: '#pipeline' },
+        { label: 'How it works', href: '#how' },
         { label: 'Pricing', href: '#pricing' },
         { label: 'FAQ', href: '#faq' },
       ],

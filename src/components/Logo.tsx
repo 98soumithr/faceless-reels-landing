@@ -1,16 +1,23 @@
+import { brand } from '@/content/content';
+
+/**
+ * Reference mark: a 4-point sparkle glyph + the wordmark in the document
+ * serif. Both the glyph and the text inherit `currentColor`, so the parent
+ * decides the colour (white inside the dark nav pill, ink on paper).
+ */
 export function Logo({ className = '' }: { className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <span
+    <span className={`inline-flex items-center gap-[9px] ${className}`}>
+      <svg
         aria-hidden="true"
-        className="grid h-[30px] w-[30px] place-items-center rounded-[7px] bg-blue"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-[19px] w-[19px] shrink-0"
       >
-        <svg width="11" height="12" viewBox="0 0 11 12" fill="none">
-          <path d="M10 5.13397c.6667.38490.6667 1.34712 0 1.73202L1.75 11.6212c-.66667.3849-1.5-.0962-1.5-.866V1.24472c0-.769804.83333-1.250954 1.5-.866007L10 5.13397Z" fill="#fff" />
-        </svg>
-      </span>
-      <span className="font-display text-[17px] font-extrabold tracking-[-0.03em] text-fg">
-        Faceless Reels
+        <path d="M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11C6.6 11.4 11.4 6.6 12 1Z" />
+      </svg>
+      <span className="text-[19px] font-semibold leading-none tracking-[-0.01em]">
+        {brand.name}
       </span>
     </span>
   );

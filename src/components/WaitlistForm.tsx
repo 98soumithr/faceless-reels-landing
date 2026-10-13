@@ -10,6 +10,10 @@ import { waitlist } from '@/content/content';
  * While the placeholder is still in place the form short-circuits in dev so
  * the page stays demoable, but shows a real error in production rather than
  * silently swallowing signups.
+ *
+ * Visually this is the reference's hero CTA: one rounded-999px capsule with
+ * an inline field + button. `tone` switches it between the dark hero and the
+ * light closing section.
  */
 const ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? '';
 const IS_CONFIGURED = ENDPOINT.length > 0 && !ENDPOINT.includes('REPLACE_ME');
@@ -17,13 +21,38 @@ const IS_CONFIGURED = ENDPOINT.length > 0 && !ENDPOINT.includes('REPLACE_ME');
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 type Status = 'idle' | 'invalid' | 'submitting' | 'success' | 'error';
+type Tone = 'dark' | 'light';
+
+const SHELL: Record<Tone, string> = {
+  dark: 'border-white/25 bg-white/[0.12] shadow-[0_22px_60px_-18px_rgba(47,107,255,0.6)] backdrop-blur-xl',
+  light:
+    'border-hair bg-card shadow-[0_1px_2px_rgba(10,15,28,0.04),0_18px_40px_-24px_rgba(10,15,28,0.3)]',
+};
+
+const SHELL_ERROR: Record<Tone, string> = {
+  dark: 'border-[rgba(255,150,150,0.75)] bg-white/[0.12] shadow-[0_22px_60px_-18px_rgba(47,107,255,0.6)] backdrop-blur-xl',
+  light: 'border-[rgba(200,50,40,0.6)] bg-card',
+};
+
+const INPUT: Record<Tone, string> = {
+  dark: 'text-white placeholder:text-white/45',
+  light: 'text-ink placeholder:text-ink-faint',
+};
+
+const ERROR_TEXT: Record<Tone, string> = {
+  dark: 'text-[#ffb0b0]',
+  light: 'text-[#c23026]',
+};
 
 export function WaitlistForm({
   source,
+  tone = 'dark',
   className = '',
 }: {
   /** Recorded with the signup so hero vs closing CTA can be compared. */
   source: 'hero' | 'closing';
+  /** Which background this sits on. */
+  tone?: Tone;
   className?: string;
 }) {
   const inputId = useId();
@@ -94,7 +123,11 @@ export function WaitlistForm({
     return (
       <div
         role="status"
-        className={`mx-auto flex max-w-[480px] items-center justify-center gap-2.5 rounded-pill border border-good/30 bg-good/10 px-5 py-3.5 text-left ${className}`}
+        className={`mx-auto flex w-full max-w-[460px] items-center justify-center gap-2.5 rounded-full border px-5 py-[13px] text-left ${
+          tone === 'dark'
+            ? 'border-white/25 bg-white/[0.12] backdrop-blur-xl'
+            : 'border-hair bg-card'
+        } ${className}`}
       >
         <svg
           width="18"
@@ -104,7 +137,7 @@ export function WaitlistForm({
           aria-hidden="true"
           className="shrink-0"
         >
-          <circle cx="10" cy="10" r="10" fill="var(--good)" />
+          <circle cx="10" cy="10" r="10" fill="var(--accent)" />
           <path
             d="m5.75 10.4 2.6 2.6 5.9-5.9"
             stroke="#fff"
@@ -113,7 +146,11 @@ export function WaitlistForm({
             strokeLinejoin="round"
           />
         </svg>
-        <p className="text-[14px] font-medium leading-[1.45] text-fg">
+        <p
+          className={`ui text-[14px] leading-[1.45] font-medium ${
+            tone === 'dark' ? 'text-on-dark' : 'text-ink'
+          }`}
+        >
           {waitlist.success}
         </p>
       </div>
@@ -124,7 +161,7 @@ export function WaitlistForm({
     <form
       onSubmit={onSubmit}
       noValidate
-      className={`mx-auto w-full max-w-[480px] ${className}`}
+      className={`mx-auto w-full max-w-[460px] ${className}`}
     >
       <label htmlFor={inputId} className="sr-only">
         {waitlist.label}
@@ -145,8 +182,8 @@ export function WaitlistForm({
       </div>
 
       <div
-        className={`flex flex-col gap-2 rounded-[22px] border bg-card p-2 shadow-card sm:flex-row sm:items-center sm:rounded-pill ${
-          showError ? 'border-red-400/70' : 'border-line'
+        className={`flex flex-col gap-2 rounded-[26px] border p-[6px] sm:flex-row sm:items-center sm:rounded-full ${
+          showError ? SHELL_ERROR[tone] : SHELL[tone]
         }`}
       >
         <input
@@ -164,19 +201,25 @@ export function WaitlistForm({
             setEmail(e.target.value);
             if (status !== 'idle') setStatus('idle');
           }}
-          className="min-w-0 flex-1 bg-transparent px-4 py-2.5 text-[15px] text-fg outline-none placeholder:text-muted"
+          className={`ui min-w-0 flex-1 bg-transparent px-5 py-3 text-[15px] outline-none ${INPUT[tone]}`}
         />
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="btn btn-primary w-full shrink-0 sm:w-auto"
+          className={`btn btn-lg w-full shrink-0 disabled:opacity-70 sm:w-auto ${
+            tone === 'dark' ? 'btn-on-dark' : 'btn-ink'
+          }`}
         >
           {status === 'submitting' ? 'Joining…' : waitlist.cta}
         </button>
       </div>
 
       {showError ? (
-        <p id={errorId} role="alert" className="mt-2.5 text-[13px] font-medium text-red-500">
+        <p
+          id={errorId}
+          role="alert"
+          className={`ui mt-2.5 text-center text-[13px] font-medium ${ERROR_TEXT[tone]}`}
+        >
           {errorText}
         </p>
       ) : null}
