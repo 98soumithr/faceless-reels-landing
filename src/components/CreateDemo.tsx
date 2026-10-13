@@ -82,16 +82,19 @@ export function CreateDemo() {
   const clicking = phase === 'clicking';
   const isBuilding = phase === 'building';
   const done = phase === 'done';
+  // The reel only appears once Create is clicked (build starts) — before that
+  // the input is alone on centre stage, with no empty reel placeholder.
+  const revealed = isBuilding || done;
   const text = prompt.slice(0, typed);
   const showCaret = phase === 'typing' || phase === 'ready';
 
   return (
     <div
       ref={rootRef}
-      className="mx-auto grid w-full max-w-[1020px] items-center gap-6 md:grid-cols-[1fr_auto_minmax(250px,300px)] md:gap-9"
+      className="mx-auto flex w-full max-w-[1020px] flex-col items-center md:flex-row md:items-center md:justify-center"
     >
       {/* ── Input panel ─────────────────────────────────────────────── */}
-      <div className="card rounded-[22px] p-6 shadow-card-lg sm:p-8">
+      <div className="card w-full max-w-[560px] rounded-[22px] p-6 shadow-card-lg sm:p-8 md:w-[520px] md:max-w-none md:shrink-0">
         <p className="label">{promptLabel}</p>
 
         <div className="mt-4 flex min-h-[76px] items-start gap-2.5 rounded-[14px] border border-hair bg-paper px-5 py-4">
@@ -175,24 +178,28 @@ export function CreateDemo() {
         </p>
       </div>
 
-      {/* ── Flow arrow (desktop) ────────────────────────────────────── */}
-      <div aria-hidden="true" className="hidden items-center justify-center md:flex">
-        <div className="relative h-[2px] w-[44px] overflow-hidden rounded-full bg-hair-strong">
-          <div
-            className="absolute inset-y-0 w-[40%] rounded-full bg-accent"
-            style={{
-              animation: isBuilding ? 'flowDash 0.9s linear infinite' : 'none',
-              opacity: isBuilding ? 1 : 0.25,
-            }}
-          />
+      {/* ── Reveal slot: arrow + reel, slide in once Create is clicked ─ */}
+      <div
+        className={`demo-reel-slot flex flex-col items-center md:flex-row md:items-center ${revealed ? 'show' : ''}`}
+      >
+        {/* Flow arrow (desktop) */}
+        <div aria-hidden="true" className="mr-7 hidden items-center justify-center md:flex">
+          <div className="relative h-[2px] w-[44px] overflow-hidden rounded-full bg-hair-strong">
+            <div
+              className="absolute inset-y-0 w-[40%] rounded-full bg-accent"
+              style={{
+                animation: isBuilding ? 'flowDash 0.9s linear infinite' : 'none',
+                opacity: isBuilding ? 1 : 0.25,
+              }}
+            />
+          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" className="ml-[-2px] text-hair-strong">
+            <path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
-        <svg width="16" height="16" viewBox="0 0 16 16" className="ml-[-2px] text-hair-strong">
-          <path d="M3 8h9m0 0-3.5-3.5M12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
 
-      {/* ── Output reel ─────────────────────────────────────────────── */}
-      <div className="relative mx-auto w-[230px] md:w-full">
+        {/* Output reel */}
+        <div className="relative mx-auto w-[230px] md:w-[280px]">
         {/* Glow that blooms behind the reel as it lands. */}
         <div
           aria-hidden="true"
@@ -207,8 +214,8 @@ export function CreateDemo() {
         <div
           className="relative aspect-[9/16] overflow-hidden rounded-[18px] border border-white/60 bg-dark-2 shadow-card-lg transition-all duration-500 ease-out"
           style={{
-            opacity: done ? 1 : 0.18,
-            transform: done ? 'translateY(0) scale(1)' : 'translateY(14px) scale(0.94)',
+            opacity: 1,
+            transform: done ? 'translateY(0) scale(1)' : 'translateY(14px) scale(0.96)',
             boxShadow: done
               ? '0 30px 70px -24px rgba(29,79,216,0.55), 0 0 0 1px rgba(255,255,255,0.5)'
               : undefined,
@@ -266,6 +273,7 @@ export function CreateDemo() {
         >
           {output.title}
         </p>
+        </div>
       </div>
     </div>
   );
