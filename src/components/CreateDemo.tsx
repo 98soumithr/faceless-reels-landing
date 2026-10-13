@@ -47,27 +47,27 @@ export function CreateDemo() {
         for (let i = 0; i <= prompt.length; i++) {
           if (cancelled) return;
           setTyped(i);
-          await sleep(36);
+          await sleep(20);
         }
         setPhase('ready');
-        await sleep(850);
+        await sleep(420);
 
         setPhase('clicking');
-        await sleep(560);
+        await sleep(360);
 
         setPhase('building');
         for (let s = 0; s < steps.length; s++) {
           if (cancelled) return;
           setActiveStep(s);
-          await sleep(300);
+          await sleep(170);
         }
-        await sleep(200);
+        await sleep(120);
 
         setPhase('done');
-        await sleep(3000);
+        await sleep(2400);
 
         setPhase('reset');
-        await sleep(520);
+        await sleep(380);
         setTyped(0);
       }
     }
@@ -212,7 +212,7 @@ export function CreateDemo() {
           }}
         />
         <div
-          className="relative aspect-[9/16] overflow-hidden rounded-[18px] border border-white/60 bg-dark-2 shadow-card-lg transition-all duration-500 ease-out"
+          className="relative aspect-[9/16] overflow-hidden rounded-[18px] border border-white/60 bg-dark-2 shadow-card-lg transition-all duration-[380ms] ease-out"
           style={{
             opacity: 1,
             transform: done ? 'translateY(0) scale(1)' : 'translateY(14px) scale(0.96)',
