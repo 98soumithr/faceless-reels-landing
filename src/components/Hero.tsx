@@ -1,6 +1,7 @@
 import { hero } from '@/content/content';
 import { ReelMarquee } from './ReelMarquee';
 import { WaitlistForm } from './WaitlistForm';
+import { FlipWord } from './FlipWord';
 
 /**
  * Full-bleed dark hero. The reference's warm gradient mesh (gold core,
@@ -74,9 +75,11 @@ export function Hero() {
 
       <div className="anim-hero shell relative">
         <h1 className="h1 mx-auto max-w-[900px] text-center text-[#eaeff8]">
-          {hero.headlineLead}
+          {hero.headlineLine1}
           <br />
-          {hero.headlineTail}
+          {hero.headlineBeforeWord}{' '}
+          <FlipWord words={hero.niches} className="text-[#eaeff8]" />{' '}
+          {hero.headlineAfterWord}
         </h1>
 
         <p className="mt-8 text-center text-[18px] leading-[1.5] text-on-dark-soft">

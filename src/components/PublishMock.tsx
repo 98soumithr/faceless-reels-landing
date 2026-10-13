@@ -1,3 +1,4 @@
+import type { ReelMedia } from '@/content/content';
 import { publishMock } from '@/content/content';
 
 /**
@@ -9,7 +10,7 @@ import { publishMock } from '@/content/content';
  * 583px field column, 18px between fields.
  */
 
-const media = publishMock.media;
+const media: ReelMedia = publishMock.media;
 
 function Help() {
   return (
@@ -52,6 +53,27 @@ export function PublishMock({ className = '' }: { className?: string }) {
           className="relative aspect-[16/9] w-full overflow-hidden rounded-[10px] bg-dark"
           style={{ background: media.kind === 'gradient' ? media.gradient : undefined }}
         >
+          {media.kind === 'image' ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={media.src}
+              alt={media.alt}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : null}
+          {media.kind === 'video' ? (
+            <video
+              src={media.src}
+              poster={media.poster}
+              muted
+              loop
+              playsInline
+              preload="none"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          ) : null}
           <span
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"

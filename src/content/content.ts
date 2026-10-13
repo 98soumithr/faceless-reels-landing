@@ -25,8 +25,23 @@ export const nav = {
 };
 
 export const hero = {
-  headlineLead: 'Turn a sentence into',
-  headlineTail: 'a history reel',
+  // The headline reads "Turn a sentence into / a <word> reel", where <word>
+  // cycles through the niches the engine covers. `niches[0]` is the word
+  // shown before JS hydrates and under prefers-reduced-motion.
+  headlineLine1: 'Turn a sentence into',
+  headlineBeforeWord: 'a',
+  niches: [
+    'history',
+    'science',
+    'engineering',
+    'heist',
+    'mythology',
+    'folklore',
+    'geography',
+    'mystery',
+    'disaster',
+  ],
+  headlineAfterWord: 'reel',
   subhead: 'Faceless. Automated. Studio-grade.',
   cta: 'Join the waitlist',
   note: 'Early access · founding-member pricing · no spam',
@@ -41,40 +56,40 @@ export const reelRowTop: {
   media: ReelMedia;
 }[] = [
   {
-    tag: 'History',
-    title: 'The town on fire since 1962',
-    runtime: '0:41',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1b2a52 0%,#0a1024 60%,#070c1b 100%)' },
-  },
-  {
     tag: 'Disbelief',
-    title: 'The Halifax Explosion',
-    runtime: '0:44',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#17345c 0%,#0a1024 58%,#060b18 100%)' },
+    title: 'London Bridge in Arizona',
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/bridge-aerial.jpg', alt: 'London Bridge rebuilt over a channel in the Arizona desert' },
   },
   {
     tag: 'Dark',
-    title: 'The Dancing Plague of 1518',
-    runtime: '0:38',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#232a5e 0%,#0b1026 60%,#070c1c 100%)' },
+    title: "Boston's deadly molasses flood",
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/flood-wreck.jpg', alt: 'Wreckage after the 1919 Boston molasses flood' },
   },
   {
     tag: 'Local',
-    title: "America's lost roadside giants",
-    runtime: '0:36',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#143a50 0%,#0a1024 58%,#060b19 100%)' },
-  },
-  {
-    tag: 'Myth vs Fact',
-    title: 'The telegram that sank a presidency',
-    runtime: '0:47',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1d2c63 0%,#0a1024 60%,#070c1b 100%)' },
+    title: 'The bridge shipped to the desert',
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/bridge-canal.jpg', alt: 'Aerial of the London Bridge channel in Lake Havasu City' },
   },
   {
     tag: 'History',
-    title: 'The island nobody can leave',
-    runtime: '0:40',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#102f4e 0%,#0a1024 56%,#060b18 100%)' },
+    title: '21 dead in a wave of molasses',
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/flood-street.jpg', alt: 'Boston North End street after the molasses flood' },
+  },
+  {
+    tag: 'Myth vs Fact',
+    title: 'How London Bridge reached Arizona',
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/bridge-river.jpg', alt: 'Aerial river bend beside the relocated London Bridge' },
+  },
+  {
+    tag: 'History',
+    title: 'The flood that smelled sweet for decades',
+    runtime: '0:56',
+    media: { kind: 'image', src: '/reels/flood-rail.jpg', alt: 'Railway and buildings damaged in the molasses flood' },
   },
 ];
 
@@ -84,28 +99,28 @@ export const reelRowBottom: {
   media: ReelMedia;
 }[] = [
   {
-    overlay: 'BURNING SINCE 1962',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)' },
+    overlay: 'SHIPPED STONE BY STONE',
+    media: { kind: 'image', src: '/reels/th-bridge-arch.jpg', alt: 'Stone arch of the relocated London Bridge' },
   },
   {
-    overlay: '36 FEET FROM DARK',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1a4a6e 0%,#0e1733 70%,#090f20 100%)' },
+    overlay: '21 DEAD IN MINUTES',
+    media: { kind: 'image', src: '/reels/th-flood-wide.jpg', alt: 'Aftermath of the Boston molasses flood' },
   },
   {
-    overlay: 'EXPERTS ARE STUNNED',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#324a86 0%,#121c3c 70%,#0a1126 100%)' },
+    overlay: 'REBUILT IN THE DESERT',
+    media: { kind: 'image', src: '/reels/th-bridge-river.jpg', alt: 'Channel built for London Bridge in Arizona' },
   },
   {
-    overlay: 'NOBODY CAME BACK',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#153a63 0%,#0d1630 70%,#080e1e 100%)' },
+    overlay: 'A WAVE OF MOLASSES',
+    media: { kind: 'image', src: '/reels/th-flood-crowd.jpg', alt: 'Crowd and wreckage after the molasses flood' },
   },
   {
-    overlay: '2,000 TONS OF TNT',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#27356d 0%,#101838 70%,#090f22 100%)' },
+    overlay: 'THE WRONG BRIDGE?',
+    media: { kind: 'image', src: '/reels/th-bridge-house.jpg', alt: 'Stone bridge beside a desert home' },
   },
   {
-    overlay: 'THE LOST GIANTS',
-    media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#1c4560 0%,#0d1730 70%,#080e1f 100%)' },
+    overlay: '15 MILES AN HOUR',
+    media: { kind: 'image', src: '/reels/th-flood-trap.jpg', alt: 'Figures amid the molasses flood wreckage' },
   },
 ];
 
@@ -147,20 +162,21 @@ export const pipeline = {
 
 export const publishMock = {
   panelTitle: 'Reel details',
-  runtime: '0:42',
+  runtime: '0:56',
   titleLabel: 'Title (required)',
-  titleCounter: '44/100',
-  title: "The town that's been on fire since 1962",
+  titleCounter: '48/100',
+  title: 'How London Bridge ended up in the Arizona desert',
   descriptionLabel: 'Description',
-  descriptionCounter: '86/5000',
+  descriptionCounter: '132/5000',
   description:
-    'Centralia, Pennsylvania sits on a coal seam that caught fire in 1962 and never stopped burning — the town was condemned and emptied, and the fire is still going.',
+    'In 1968 a developer bought the old London Bridge and shipped it across the Atlantic stone by stone, rebuilding it in Lake Havasu City, Arizona — where it still stands today.',
   tagsLabel: 'Tags',
-  tags: ['centralia', 'us history', 'mine fire', 'did you know'],
+  tags: ['london bridge', 'arizona', '1968', 'did you know'],
   cta: 'Publish',
   media: {
-    kind: 'gradient',
-    gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)',
+    kind: 'image',
+    src: '/reels/bridge-river.jpg',
+    alt: 'Aerial of the London Bridge channel in Arizona',
   } satisfies ReelMedia,
 };
 
@@ -173,21 +189,21 @@ export const showcase = {
   reels: [
     {
       tag: 'Disbelief',
-      title: 'The Halifax Explosion',
-      runtime: '0:44',
-      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#17345c 0%,#0a1024 58%,#060b18 100%)' },
+      title: 'London Bridge in Arizona',
+      runtime: '0:56',
+      media: { kind: 'image', src: '/reels/bridge-aerial.jpg', alt: 'London Bridge rebuilt over a channel in the Arizona desert' },
     },
     {
       tag: 'Dark curiosity',
-      title: 'The Dancing Plague of 1518',
-      runtime: '0:38',
-      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#232a5e 0%,#0b1026 60%,#070c1c 100%)' },
+      title: "Boston's Deadly Molasses Flood",
+      runtime: '0:56',
+      media: { kind: 'image', src: '/reels/flood-wide.jpg', alt: 'Aftermath of the 1919 Boston molasses flood' },
     },
     {
       tag: 'Local pride',
-      title: 'Why Centralia Still Burns',
-      runtime: '0:41',
-      media: { kind: 'gradient', gradient: 'linear-gradient(135deg,#2c3f7a 0%,#111a38 70%,#0a1024 100%)' },
+      title: 'The bridge shipped to the desert',
+      runtime: '0:56',
+      media: { kind: 'image', src: '/reels/bridge-arch.jpg', alt: 'Stone arch of the relocated London Bridge' },
     },
   ] satisfies { tag: string; title: string; runtime: string; media: ReelMedia }[],
 };
