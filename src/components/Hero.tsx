@@ -70,7 +70,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-white pt-[104px] pb-[110px] md:pt-[118px] md:pb-[130px]"
+      className="relative isolate overflow-hidden bg-white pt-[96px] pb-[90px] md:pt-[104px] md:pb-[110px]"
     >
       {/* Soft white base. */}
       <div
@@ -116,25 +116,21 @@ export function Hero() {
       />
 
       <div className="anim-hero shell relative">
-        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-10 xl:gap-16">
-          {/* Text — left on desktop, centred on mobile; vertically centred
-              against the taller demo column */}
-          <div className="text-center lg:flex lg:min-h-[640px] lg:flex-col lg:justify-center lg:text-left">
-            <h1 className="mx-auto max-w-[520px] font-semibold tracking-[-0.015em] text-ink lg:mx-0 text-[34px] leading-[1.1] sm:text-[42px] lg:text-[46px] xl:text-[52px]">
-              {hero.topHeadlineLead}{' '}
-              <span className="text-accent">{hero.topHeadlineAccent}</span>
-            </h1>
+        {/* Compact text on top, the bigger animation right below — the whole
+            thing sits in one viewport. */}
+        <div className="text-center">
+          <h1 className="mx-auto max-w-[920px] text-[26px] leading-[1.14] font-bold tracking-[-0.015em] text-ink sm:text-[32px] lg:text-[38px]">
+            {hero.topHeadlineLead}{' '}
+            <span className="text-accent">{hero.topHeadlineAccent}</span>
+          </h1>
 
-            <p className="mx-auto mt-5 max-w-[480px] text-[15.5px] leading-[1.55] text-ink-soft lg:mx-0 md:text-[16.5px]">
-              {hero.topSubhead}
-            </p>
-          </div>
+          <p className="mx-auto mt-3.5 max-w-[560px] text-[14.5px] leading-[1.5] text-ink-soft md:text-[15.5px]">
+            {hero.topSubhead}
+          </p>
+        </div>
 
-          {/* Animation — right on desktop, below on mobile. Reserve the
-              revealed height so the page below never reflows on each loop. */}
-          <div className="w-full lg:min-h-[640px]">
-            <CreateDemo stacked />
-          </div>
+        <div className="mt-10 md:mt-11">
+          <CreateDemo />
         </div>
 
         <p className="label mt-[56px] flex items-center justify-center gap-2.5 text-ink-faint">

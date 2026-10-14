@@ -212,7 +212,7 @@ export function CreateDemo({ stacked = false }: { stacked?: boolean }) {
         </div>
 
         {/* Output reel */}
-        <div className={`relative mx-auto ${stacked ? 'w-[210px]' : 'w-[230px] md:w-[280px]'}`}>
+        <div className={`relative mx-auto ${stacked ? 'w-[210px]' : 'w-[250px] md:w-[300px]'}`}>
         {/* Glow that blooms behind the reel as it lands. */}
         <div
           aria-hidden="true"
