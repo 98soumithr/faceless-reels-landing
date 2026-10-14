@@ -1,0 +1,5 @@
+:HL["/faceless-reels-landing/_next/static/chunks/0jfow9-c7odct.css","style"]
+:HL["https://api.fontshare.com/v2/css?f%5B%5D=erode&display=swap","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
+0:{"b":"qhqKUhJeVkWzPKll4pkIZ","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
