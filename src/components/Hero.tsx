@@ -124,7 +124,7 @@ export function Hero() {
             <span className="text-accent">{hero.topHeadlineAccent}</span>
           </h1>
 
-          <p className="mx-auto mt-3.5 max-w-[560px] text-[14.5px] leading-[1.5] text-ink-soft md:text-[15.5px]">
+          <p className="mx-auto mt-3.5 max-w-[580px] text-[14.5px] leading-[1.5] font-semibold text-ink md:text-[15.5px]">
             {hero.topSubhead}
           </p>
         </div>
