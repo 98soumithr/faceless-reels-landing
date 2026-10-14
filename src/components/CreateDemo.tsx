@@ -14,7 +14,7 @@ type Phase = 'typing' | 'ready' | 'clicking' | 'building' | 'done' | 'reset';
 
 const { prompt, cta, building: buildingLabel, steps, output, promptLabel } = createDemo;
 
-export function CreateDemo() {
+export function CreateDemo({ stacked = false }: { stacked?: boolean }) {
   const [phase, setPhase] = useState<Phase>('typing');
   const [typed, setTyped] = useState(0);
   const [activeStep, setActiveStep] = useState(-1);
@@ -91,10 +91,20 @@ export function CreateDemo() {
   return (
     <div
       ref={rootRef}
-      className="mx-auto flex w-full max-w-[1020px] flex-col items-center md:flex-row md:items-center md:justify-center"
+      className={
+        stacked
+          ? 'mx-auto flex w-full max-w-[460px] flex-col items-center'
+          : 'mx-auto flex w-full max-w-[1020px] flex-col items-center md:flex-row md:items-center md:justify-center'
+      }
     >
       {/* ── Input panel ─────────────────────────────────────────────── */}
-      <div className="card w-full max-w-[560px] rounded-[22px] p-6 shadow-card-lg sm:p-8 md:w-[520px] md:max-w-none md:shrink-0">
+      <div
+        className={
+          stacked
+            ? 'card w-full rounded-[22px] p-5 shadow-card-lg sm:p-6'
+            : 'card w-full max-w-[560px] rounded-[22px] p-6 shadow-card-lg sm:p-8 md:w-[520px] md:max-w-none md:shrink-0'
+        }
+      >
         <p className="label">{promptLabel}</p>
 
         <div className="mt-4 flex min-h-[76px] items-start gap-2.5 rounded-[14px] border border-hair bg-paper px-5 py-4">
@@ -180,10 +190,13 @@ export function CreateDemo() {
 
       {/* ── Reveal slot: arrow + reel, slide in once Create is clicked ─ */}
       <div
-        className={`demo-reel-slot flex flex-col items-center md:flex-row md:items-center ${revealed ? 'show' : ''}`}
+        className={`demo-reel-slot flex flex-col items-center ${stacked ? 'stacked' : 'md:flex-row md:items-center'} ${revealed ? 'show' : ''}`}
       >
-        {/* Flow arrow (desktop) */}
-        <div aria-hidden="true" className="mr-7 hidden items-center justify-center md:flex">
+        {/* Flow arrow (desktop, horizontal layout only) */}
+        <div
+          aria-hidden="true"
+          className={`mr-7 hidden items-center justify-center ${stacked ? '' : 'md:flex'}`}
+        >
           <div className="relative h-[2px] w-[44px] overflow-hidden rounded-full bg-hair-strong">
             <div
               className="absolute inset-y-0 w-[40%] rounded-full bg-accent"
@@ -199,7 +212,7 @@ export function CreateDemo() {
         </div>
 
         {/* Output reel */}
-        <div className="relative mx-auto w-[230px] md:w-[280px]">
+        <div className={`relative mx-auto ${stacked ? 'w-[210px]' : 'w-[230px] md:w-[280px]'}`}>
         {/* Glow that blooms behind the reel as it lands. */}
         <div
           aria-hidden="true"

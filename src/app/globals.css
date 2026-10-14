@@ -418,6 +418,24 @@
   }
 }
 
+/* Stacked variant (hero side-by-side layout): the reel always reveals
+   vertically, below the input, at every width. Higher specificity than the
+   rules above, so it wins regardless of the breakpoint. */
+.demo-reel-slot.stacked {
+  max-width: none;
+  max-height: 0;
+  margin-top: 0;
+  margin-left: 0;
+  transform: translateY(18px);
+}
+.demo-reel-slot.stacked.show {
+  max-width: none;
+  max-height: 760px;
+  margin-top: 24px;
+  margin-left: 0;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .demo-reel-slot {
     transition: none;

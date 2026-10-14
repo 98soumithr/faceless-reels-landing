@@ -116,20 +116,28 @@ export function Hero() {
       />
 
       <div className="anim-hero shell relative">
-        <h1 className="h1 mx-auto max-w-[860px] text-center text-ink">
-          {hero.topHeadlineLead}{' '}
-          <span className="text-accent">{hero.topHeadlineAccent}</span>
-        </h1>
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-10 xl:gap-16">
+          {/* Text — left on desktop, centred on mobile; vertically centred
+              against the taller demo column */}
+          <div className="text-center lg:flex lg:min-h-[640px] lg:flex-col lg:justify-center lg:text-left">
+            <h1 className="mx-auto max-w-[520px] font-semibold tracking-[-0.015em] text-ink lg:mx-0 text-[34px] leading-[1.1] sm:text-[42px] lg:text-[46px] xl:text-[52px]">
+              {hero.topHeadlineLead}{' '}
+              <span className="text-accent">{hero.topHeadlineAccent}</span>
+            </h1>
 
-        <p className="mx-auto mt-6 max-w-[620px] text-center text-[17px] leading-[1.55] text-ink-soft md:text-[18px]">
-          {hero.topSubhead}
-        </p>
+            <p className="mx-auto mt-5 max-w-[480px] text-[15.5px] leading-[1.55] text-ink-soft lg:mx-0 md:text-[16.5px]">
+              {hero.topSubhead}
+            </p>
+          </div>
 
-        <div className="mt-14 md:mt-16">
-          <CreateDemo />
+          {/* Animation — right on desktop, below on mobile. Reserve the
+              revealed height so the page below never reflows on each loop. */}
+          <div className="w-full lg:min-h-[640px]">
+            <CreateDemo stacked />
+          </div>
         </div>
 
-        <p className="label mt-[64px] flex items-center justify-center gap-2.5 text-ink-faint">
+        <p className="label mt-[56px] flex items-center justify-center gap-2.5 text-ink-faint">
           <span className="live-dot" aria-hidden="true" />
           {hero.eyebrow}
         </p>
